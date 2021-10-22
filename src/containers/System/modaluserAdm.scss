@@ -1,0 +1,36 @@
+
+ .modal-header .close {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 2rem;
+    color: #fff;
+}
+
+
+.container-input-1{
+    display: flex;
+    .form-username{
+        width: 50%;
+    }
+    .form-password{
+        width: 50%;
+        margin-left: 10px;
+        
+    }
+
+
+}
+
+.container-input-2{
+    margin-top: 10px;
+
+    .form-phone{
+        margin-top: 10px;
+
+    }
+    .form-roleId{
+        display: none;
+    }
+      
+}

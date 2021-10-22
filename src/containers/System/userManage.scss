@@ -1,0 +1,63 @@
+#customers {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #customers tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #customers tr:hover {background-color: #ddd;}
+  
+  #customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+  }
+
+.btn-edit {
+    width: 50px;
+    height: 30px;
+    background-color: transparent ;
+    outline : none;
+    border: none;
+    color: orange !important;
+    font-size: 20px;
+
+    &:hover {
+      background-color: transparent !important;
+      color: yellow !important;
+
+        i.fas.fa-edit {
+          display: contents;
+          color: orange !important;
+        }
+      }
+    }
+
+
+.btn-delete {
+  width: 50px;
+  height: 30px;
+  background-color: transparent ;
+  outline : none;
+  border: none;
+  font-size: 20px;
+  color: rgba(255, 17, 0, 0.932) !important;
+
+  &:hover {
+    background-color: transparent !important;
+    color: rgba(255, 17, 0, 0.932) !important;
+
+      i.fas.fa-trash {
+        display: contents;
+        color: rgba(255, 17, 0, 0.932) !important;
+      }
+    }
+  }
