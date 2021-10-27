@@ -10,6 +10,7 @@ const getAllUSER = (inputId) => {
 }
 
 const createNewUserAdm = (data) => {
+    console.log(data)
     console.log('check data from service', data)
     return axios.post('/api/create-new-userAdm',data);
 }
@@ -24,13 +25,21 @@ const deleteUserAdm = (userId) => {
     });
 }
 
+const editUserAdm = (data) => {
+    return axios.put('/api/edit-userAdm',data);
+}
 
 
 
 
 
 
-export {handleLoginApi, getAllUSER, createNewUserAdm,deleteUserAdm
+
+export {handleLoginApi,
+     getAllUSER, 
+    createNewUserAdm,
+    deleteUserAdm,
+    editUserAdm
 
 
 

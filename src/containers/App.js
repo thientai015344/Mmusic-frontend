@@ -9,15 +9,20 @@ import { ToastContainer } from 'react-toastify';
 import { userIsAuthenticated, userIsNotAuthenticated } from '../hoc/authentication';
 
 import { path } from '../utils'
+import HomePage from './homePage/homePage';
+import PageSong from './PageSong/PageSong';
 
-import Home from '../routes/Home';
 
 import Login from './Authen/login';
+import Menu from './Header1/Menu';
+import Footer from './Footer/Footer';
 import Header from './Header/Header';
 import System from '../routes/System';
+import Home from '../routes/Home';
 
 import { CustomToastCloseButton } from '../components/CustomToast';
-import ConfirmModal from '../components/ConfirmModal';
+import  CustomScrollbars from '../components/CustomScrollbars';
+import PlayerMusic from '../components/PlayerMusic';
 
 class App extends Component {
 
@@ -44,16 +49,23 @@ class App extends Component {
             <Fragment>
                 <Router history={history}>
                     <div className="main-container">
-                        <ConfirmModal />
-                        {this.props.isLoggedIn && <Header />}
+                        <Menu />  
 
-                        <span className="content-container">
-                            <Switch>
- 
-                                <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
-                                <Route path={path.SYSTEM} component={userIsAuthenticated(System)} /> 
-                            </Switch>
-                        </span>
+                        {/* {this.props.isLoggedIn && <Header />} */}
+    
+                            <div className="content-container">
+                                <CustomScrollbars style={{height: '100vh', width: '100%'}}  >
+                                    <Switch>
+                                         {/* <Route  path={path.HOME} component={userIsNotAuthenticated(Home)} /> */}
+                                         <Route exact path={path.HOMEPAGE} component={(HomePage)} /> 
+                                         <Route path={path.SONG} component={(PageSong)} />
+                                        <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
+                                        <Route path={path.SYSTEM} component={userIsAuthenticated(System)} /> 
+                                    </Switch>
+                                </CustomScrollbars>
+                            </div>
+                            <PlayerMusic />
+                        <Footer />
 
                         <ToastContainer
                             className="toast-container" toastClassName="toast-item" bodyClassName="toast-item-body"
@@ -62,6 +74,7 @@ class App extends Component {
                             closeButton={<CustomToastCloseButton />}
                         />
                     </div>
+                   
                 </Router>
             </Fragment>
         )

@@ -1,9 +1,10 @@
 export const path = {
-    HOME: '/',
+    HOME : 'system',
+    HOMEPAGE: '/',
     LOGIN: '/login',
     LOG_OUT: '/logout',
     ADMIN: '/admin',
-    SONG: '/song',
+    SONG: '/bai-hat',
     BXH: '/BXH',
     COLLECTION: '/collection',
     ALBUM: '/album',

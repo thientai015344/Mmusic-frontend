@@ -1,0 +1,21 @@
+.playlistItem{
+
+    max-width: 1170px !important;
+    margin: 10px auto;
+ 
+}
+.title{
+    
+    width: 100%;
+    text-align: left;
+    margin: 20px;
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+.containerList{
+    
+    display: flex;
+    width: 1170px;
+    flex-wrap: wrap;
+    
+}

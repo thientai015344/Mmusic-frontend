@@ -1,0 +1,78 @@
+.music-item{
+    
+    display: block;
+    margin: 0 10px;
+    width: 212px;
+    height: 100%;
+    border-radius: 6px;
+    background-color: rgba(0,0,0,0.05)
+
+}
+.music_name{
+    display:block;
+    text-decoration: none;
+    margin: 5px;
+    text-align: left;
+    font-size:1.2rem;
+    color:#000;
+    cursor: pointer;
+
+
+
+}
+.singer-name{
+    margin: 5px;
+    font-size: 1rem;
+    text-align: left ;
+    text-decoration: none;
+    color:#605a5a
+}
+
+.music-picture{
+    position: relative;
+    width: 100%;
+    
+    
+}
+.music-picture--link{
+    width: 100%; 
+    border-radius: 5px;
+}
+ 
+.music-picture--img{
+    display: block;
+    width: 100%;
+    z-index: 5;
+    
+    border-radius: 5px;
+}
+.music-item:hover .music-overlay{
+    display: flex;
+}
+.icon{
+    background-color: transparent;
+    font-size: 57px;  
+    display: block;
+    color: #fff;
+    border: none;
+    z-index: 1;
+}
+.icon:hover{
+    opacity: 0.5;
+}
+
+
+.music-overlay{
+    position: absolute;
+    border-radius: 6px;
+    width: 100%;
+    top: 0;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    display: none;
+    z-index: 6;
+    justify-content: center;
+   
+}
+

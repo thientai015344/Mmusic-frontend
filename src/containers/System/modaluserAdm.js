@@ -1,4 +1,5 @@
 import React  from 'react';
+import {emitter} from '../../utils/emitter'
 import './modaluserAdm.scss'
 //impoxrt { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
@@ -14,7 +15,23 @@ constructor(props) {
         roleId : '0',
 
     }
+    this.listenToEmitter();
 }
+listenToEmitter () {
+
+    emitter.on ('EVENT_CLEAR_MODAL_DATA', () => {
+        this.setState({
+            username : '',
+            password : '',
+            email : '',
+            phonenumber : '',
+            roleId : '0',
+
+        })
+    })
+
+}
+
 
     // componentDidMount() {
 

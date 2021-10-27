@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../Header/menu.css';
+import './menu.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faUser} from '@fortawesome/free-solid-svg-icons'
 import { NavLink } from "react-router-dom";

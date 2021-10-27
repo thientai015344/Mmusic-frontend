@@ -1,0 +1,172 @@
+.Wrap {
+    max-width: 1170px;
+    margin: 0 auto;
+}
+
+
+.list-item-media{
+    position: relative;
+    align-items: center;
+    border-radius: 4px;
+    width: 100%;
+    height: 70px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    
+}
+.list-item-media:hover .media-overlay{
+    display: block;
+}
+.list-item-media:hover .media-overlay--background{
+    display: block;
+}
+    
+.item-media{ 
+    border-radius: 4px;
+    display: flex;
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+    
+}
+
+.media-left{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.media-picture{
+
+    position: relative;
+    text-align: left;
+    width: 90px;
+    height: 100%;
+}
+.media-picture--img{
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    border-radius: 4px;
+    z-index: 2;
+   
+
+}
+.decription{
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    z-index: 2;
+}
+
+.song-name{
+font-size:  1.2rem;
+font-weight: 500;
+top: 0;
+cursor: default;
+}
+
+.singer-name{
+text-decoration: none;
+color : rgba(97, 97, 97, 1)
+}
+
+.singer-name:hover {
+    color: rgba(59, 79, 165, 1)
+}
+
+.media-duration{
+    width: 100%;
+    height: 100%;
+    line-height: 48.93px;
+    font-weight: 200;
+    cursor: default;
+    z-index: 2;
+}
+
+.media-right{
+    
+    width: 100%;
+    height: 100%;
+}
+
+.media-icon{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    justify-content: right;
+}
+.media-icon button{
+    background: none;
+    position: relative;
+    border-radius: 50%;
+    border: none ;
+    margin: 0 10px;
+    height: 40px;
+    width: 40.6px;
+    
+
+}
+
+.media-icon button:hover{
+    background-color: rgba(218, 218, 218, 1);
+    z-index: 2;
+}
+
+.media-icon button svg {
+    left: 8.5px;
+    top: 2px;
+    bottom: 0;
+    position: absolute;
+    height: 39px;
+    color: #645757;
+    font-size: 1.6rem;
+    z-index: 2;
+}
+ .dowload svg {
+    top: 0px !important;
+}
+
+.media-overlay--background{
+    position: absolute;
+    border-radius: 6px;
+    width: 100%;
+    top: 0;
+    height: 100%;
+    background-color: rgba(242, 242, 242, 1) ;
+    color: #fff;  
+    z-index:1;
+    display : none;
+    justify-content: center;
+}
+
+.mediasong-icon{
+    background-color: transparent;
+    font-size: 22px;  
+    display: block;
+    margin: 8px 0 0 18px;
+    color: #fff;
+    border: none;
+    z-index: 1;
+}
+
+.icon:hover{
+    opacity: 0.5;
+}
+
+.media-overlay{
+    position: absolute;
+    border-radius: 6px;
+    width: 50px;
+    top: 0;
+    height: 50px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    display : none;
+    z-index: 6;
+    justify-content: center;
+   
+}
+

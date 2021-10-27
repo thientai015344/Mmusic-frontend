@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 //imporxt { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './userManage.scss'
-import {getAllUSER, createNewUserAdm, deleteUserAdm} from '../../services/USERService';
+import {getAllUSER, createNewUserAdm, deleteUserAdm, editUserAdm} from '../../services/USERService';
 import ModalUserAdm from './modaluserAdm';
+import ModalEditUser from './modalEditUser';
+import {emitter} from '../../utils/emitter'
 
 class UserManage extends Component {
 
@@ -12,6 +14,10 @@ class UserManage extends Component {
         this.state = {
             ArrayUser : [],
             isOpenModalUserAdm : false, 
+            isOpenModalEditUserAdm : false, 
+            userEdit : {}
+            
+
         }
     }
 
@@ -43,6 +49,10 @@ class UserManage extends Component {
        this.setState({isOpenModalUserAdm : !this.state.isOpenModalUserAdm, })
 
     }
+    toggleUserEditModal = () =>{
+        this.setState ({isOpenModalEditUserAdm : !this.state.isOpenModalEditUserAdm})
+    }
+
 
     createNewUser = async (data) =>{
         try {
@@ -54,6 +64,7 @@ class UserManage extends Component {
                this.setState({
                    isOpenModalUserAdm : false
                })
+               emitter.emit('EVENT_CLEAR_MODAL_DATA')
            }
         
         } catch (error) {
@@ -64,15 +75,53 @@ class UserManage extends Component {
 
     handleDelete = async (user) => {
 
-        console.log('click delete', user)
+  
         try {
-            let response = await deleteUserAdm(user.id)
-            console.log(response)
+            let res = await deleteUserAdm(user.id)
+            if(res && res.errCode === 0){
+
+                await this.getAllUsers();
+
+            }
+            else{
+                alert(res.errMessage)
+            }
             
         } catch (error) {
             console.log(error);
             
         }
+    }
+    handleEdit = (user) =>{
+
+       
+
+        this.setState ({
+            isOpenModalEditUserAdm : true,
+            userEdit : user
+        })
+
+    }
+
+    handleEditUser = async(user) => {
+        try {
+            
+            let res = await editUserAdm(user);
+            if(res && res.errCode === 0){
+                this.setState({ 
+                    isOpenModalEditUserAdm: false,
+                })
+                await this.getAllUsers();
+            }
+            else{
+                alert(res.errCode)
+            }
+        } catch (error) {
+            console.log(error);
+            
+        }
+
+        
     }
 
     
@@ -94,6 +143,16 @@ class UserManage extends Component {
                 createNewUser = {this.createNewUser}
                 
                 />
+                {this.state.isOpenModalEditUserAdm &&
+                    <ModalEditUser
+
+                        isOpen={this.state.isOpenModalEditUserAdm}
+                        toggleFromParent = {this.toggleUserEditModal}
+                        currenUser = {this.state.userEdit}
+                        ediUser = {this.handleEditUser}
+
+                    />
+                }
                 
                 <div className="title text-center">
                         manager hehe
@@ -126,7 +185,9 @@ class UserManage extends Component {
                                          <td> {item.phonenumber} </td>
                                          <td> {item.roleId}</td>
                                          <td>
-                                             <button className="btn-edit"><i className="fas fa-edit"></i></button>
+                                             <button className="btn-edit"  onClick = {() =>{this.handleEdit(item)}} >
+                                                 <i className="fas fa-edit">
+                                                 </i></button>
                                              <button 
                                              className="btn-delete"
                                              onClick = {() =>{this.handleDelete(item)}}

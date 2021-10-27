@@ -1,4 +1,13 @@
-.slider{
-  max-width: 1050px;
-  margin: 70px auto 0 auto;
+.slick-prev:before, .slick-next:before {
+  font-family: 'slick';
+  font-size: 34px !important;
+  line-height: 1;
+  color: #908181 !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.Wrap1 {
+  max-width: 1170px;
+  margin: 54px auto;
 }
