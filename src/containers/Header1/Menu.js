@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './menu.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faUser} from '@fortawesome/free-solid-svg-icons'
+import { connect } from 'react-redux';
+import * as actions from "../../store/actions";
 import { NavLink } from "react-router-dom";
 
 class Menu extends Component {
@@ -14,55 +14,9 @@ class Menu extends Component {
 
     }
 
-     
+
        
 
-    renderButtonLogin =() =>(  
-        <div className="user-loggin">
-            <button  className=" btn-login ">Đăng nhập</button>
-            <button  className=" btn-regitter ">Đăng ký</button>
-        </div>          
-    )   
-
-renderUser =() =>(  
-    <div className="use-user">
-        <div className="user-picture">
-            <FontAwesomeIcon icon ={faUser}  /> 
-            <div className="user-logout">
-                <ul>
-                    <li className="item-proflie">
-                    <NavLink to="#/" className="profile">Trang cá nhân</NavLink>
-                    </li>
-                    <li className="item-logout">
-                    <NavLink to="#/" className="logout">Đăng Xuất</NavLink>
-                    </li>
-                </ul>
-            </div>
-        </div>  
-    </div>                
-)
-
-displaycheck =() =>{
-    if(this.state.status === 0){
-        return this.renderButtonLogin();
-        
-    }
-    else{
-
-        return this.renderUser();
-    }
-}
-
-changeiconButton =() =>{
-    if(this.state.status === 0){
-        
-        this.setState({status: 1})
-    }
-    else{
-        this.setState({status: 0})
-    }
-   
-}  
     render() {
         return (
             <>
@@ -75,44 +29,40 @@ changeiconButton =() =>{
                         </div>  
                         <div className="navbar-list-menu">
                             <ul id="nav-listMenu"> 
-                            {/* ///////////////* song * / */}
-                            <li className="navbar-li-song">
-                                <NavLink activeclassname="active" className="nav-listMenu--Song " to="/bai-hat">
-                                Bài hát                   
-                                </NavLink>
-                                
-                            </li>
-                            {/* /* ////////BXH/////////////////// */} 
-                            <li className="navbar-li-charts">
-                                <NavLink activeclassname="active" className="nav-listMenu--charts" to="/BXH">
-                                BXH                  
-                                </NavLink>  
-                                
-                            </li>
-                            {/* collection */} 
-                            <li className="navbar-li-collection">
-                                <NavLink activeclassname="active" className="nav-listMenu--collection" to="/tuyen-tap">
-                                Tuyển tập                  
-                                </NavLink>
-                                
-                            </li>
-                            {/* playlist */} 
-                            <li className="navbar-li-playlist">
-                                <NavLink activeclassname="active" className="nav-listMenu--playlist" to="/playlist">
-                                        playlist</NavLink>
-                                
-                            </li>
-                            {/* artist */} 
-                            <li activeclassname="active" className="navbar-li-artist">
-                                <NavLink className="nav-listMenu--artist" to="/nghe-si">
-                                Nghệ sĩ                 
-                                </NavLink>   
-                            </li>  
-                            <li activeclassname="active" className="navbar-li-artist">
-                                <NavLink className="nav-listMenu--artist" to="/user">
-                                User                
-                                </NavLink>   
-                            </li>      
+                                {/* ///////////////* song * / */}
+                                <li className="navbar-li-song">
+                                    <NavLink activeclassname="active" className="nav-listMenu--Song " to="/bai-hat">
+                                    Bài hát                   
+                                    </NavLink>
+                                    
+                                </li>
+                                {/* /* ////////BXH/////////////////// */} 
+                                <li className="navbar-li-charts">
+                                    <NavLink activeclassname="active" className="nav-listMenu--charts" to="/BXH">
+                                    BXH                  
+                                    </NavLink>  
+                                    
+                                </li>
+                                {/* collection */} 
+                                <li className="navbar-li-collection">
+                                    <NavLink activeclassname="active" className="nav-listMenu--collection" to="/tuyen-tap">
+                                    Tuyển tập                  
+                                    </NavLink>
+                                    
+                                </li>
+                                {/* playlist */} 
+                                <li className="navbar-li-playlist">
+                                    <NavLink activeclassname="active" className="nav-listMenu--playlist" to="/playlist">
+                                            playlist</NavLink>
+                                    
+                                </li>
+                                {/* artist */} 
+                                <li activeclassname="active" className="navbar-li-artist">
+                                    <NavLink className="nav-listMenu--artist" to="/nghe-si">
+                                    Nghệ sĩ                 
+                                    </NavLink>   
+                                </li>  
+                        
                             </ul>
                         </div>     
                         <div className="auto-right">
@@ -122,10 +72,15 @@ changeiconButton =() =>{
                                 </svg>
                                 <input type="text" className="search-input" placeholder="Tìm Kiếm" aria-label="Input group example" aria-describedby="basic-addon1" autoComplete="off" />
                             </div>
-                            <div className="user-loggin">
-                                <NavLink to="#/" className=" btn-login ">Đăng nhập</NavLink>
+                            <div className="user-pfrofile">
+                                <NavLink to="/myfrofile" className=" frofile ">
+                                        <i className="fas fa-user"></i>
+                                </NavLink>
                                
                              </div>    
+                             {/* <div className="btn btn-logout" onClick={processLogout}>
+                                 <i className="fas fa-sign-out-alt"></i>
+                            </div> */}
                         </div>
                     </div>    
                
@@ -136,5 +91,20 @@ changeiconButton =() =>{
     }
 }
 
-export default Menu;
+// const mapStateToProps = state => {
+//     return {
+//     isLoggedIn: state.user.isLoggedIn
+//     };
+//     };
+    
+//     const mapDispatchToProps = dispatch => {
+//     return {
+//     processLogout: () => dispatch(actions.processLogout()),
+//     };
+//     };
+//connect(mapStateToProps, mapDispatchToProps)
+
+export default   (Menu);
+
+
 

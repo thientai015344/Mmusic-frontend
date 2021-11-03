@@ -4,22 +4,16 @@ import { Route, Switch } from 'react-router-dom';
 import { ConnectedRouter as Router } from 'connected-react-router';
 import { history } from '../redux'
 import { ToastContainer } from 'react-toastify';
-
-
 import { userIsAuthenticated, userIsNotAuthenticated } from '../hoc/authentication';
-
 import { path } from '../utils'
 import HomePage from './homePage/homePage';
 import PageSong from './PageSong/PageSong';
-
-
+import  MyProFile from './myFroFile/MyProFile'
 import Login from './Authen/login';
 import Menu from './Header1/Menu';
 import Footer from './Footer/Footer';
-import Header from './Header/Header';
 import System from '../routes/System';
 import Home from '../routes/Home';
-
 import { CustomToastCloseButton } from '../components/CustomToast';
 import  CustomScrollbars from '../components/CustomScrollbars';
 import PlayerMusic from '../components/PlayerMusic';
@@ -51,14 +45,17 @@ class App extends Component {
                     <div className="main-container">
                         <Menu />  
 
-                        {/* {this.props.isLoggedIn && <Header />} */}
+                     
     
                             <div className="content-container">
                                 <CustomScrollbars style={{height: '100vh', width: '100%'}}  >
                                     <Switch>
-                                         {/* <Route  path={path.HOME} component={userIsNotAuthenticated(Home)} /> */}
-                                         <Route exact path={path.HOMEPAGE} component={(HomePage)} /> 
+                                         <Route exact path={path.HOME} component={(Home)} />
+                                         <Route  path={path.HOMEPAGE} component={(HomePage)} /> 
                                          <Route path={path.SONG} component={(PageSong)} />
+                                         <Route path={path.MY_MUSIC} component={(MyProFile)} />
+                                       
+                                       
                                         <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
                                         <Route path={path.SYSTEM} component={userIsAuthenticated(System)} /> 
                                     </Switch>

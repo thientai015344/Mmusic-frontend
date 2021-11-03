@@ -1,7 +1,7 @@
 @import "../styles/common.scss";
 
 .navigator-menu {
-    display: flex;
+
     margin: 0;
     padding: 0;
     &.list-unstyled,
@@ -38,6 +38,7 @@
                 .menu-link {
                     text-decoration: none;
                     color: $text-in-light;
+                    width: 100%;
                 }
                 .sub-menu-list {
                     display: none;
@@ -69,9 +70,13 @@
                         }
                     }
                 }
-                &.active span {
-                    font-weight: 500;
-                    color: $colormain;
+                &.active  {
+                    a{
+                        
+                        font-weight: 500;
+                        color: red;
+                    }
+
                 }
                 &:hover {
                     background-color: darken($bg-menu-color, 3);

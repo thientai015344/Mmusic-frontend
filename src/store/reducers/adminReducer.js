@@ -1,33 +1,33 @@
 import actionTypes from '../actions/actionTypes';
 
 const initialState = {
-    isLoggedIn: false,
-    adminInfo: null
+   roleId : []
 }
 
-const appReducer = (state = initialState, action) => {
+const adminReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.ADMIN_LOGIN_SUCCESS:
+        case actionTypes.ETCH_SONGTOPLAYLIST_START:
             return {
                 ...state,
-                isLoggedIn: true,
-                adminInfo: action.adminInfo
+                
             }
-        case actionTypes.ADMIN_LOGIN_FAIL:
-            return {
-                ...state,
-                isLoggedIn: false,
-                adminInfo: null
+
+        case actionTypes.FETCH_SONGTOPLAYLIST_SUCCESS:
+        return {
+            
+            ...state,
+            
             }
-        case actionTypes.PROCESS_LOGOUT:
-            return {
-                ...state,
-                isLoggedIn: false,
-                adminInfo: null
+
+        case actionTypes.FETCH_SONGTOPLAYLIST_FAILED:
+        return {
+            ...state,   
+            
             }
+       
         default:
             return state;
     }
 }
 
-export default appReducer;
+export default adminReducer;

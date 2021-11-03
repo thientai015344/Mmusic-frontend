@@ -1,6 +1,6 @@
 export const path = {
-    HOME : 'system',
-    HOMEPAGE: '/',
+    HOME : '/',
+    HOMEPAGE: '/home',
     LOGIN: '/login',
     LOG_OUT: '/logout',
     ADMIN: '/admin',
@@ -8,8 +8,8 @@ export const path = {
     BXH: '/BXH',
     COLLECTION: '/collection',
     ALBUM: '/album',
-    SINGER: '/BXH',
-    MY_MUSIC: '/mymusic'
+    SINGER: '/Singer',
+    MY_MUSIC: '/myfrofile'
 };
 
 export const languages = {

@@ -155,7 +155,7 @@ class UserManage extends Component {
                 }
                 
                 <div className="title text-center">
-                        manager hehe
+                        USER MANAGE 
                 </div>
                 <div className="mx-3 mb-3">
 

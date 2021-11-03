@@ -32,6 +32,8 @@
     top: 0; 
     z-index: 10;
 }
+
+
 .nav-logo{
     margin-right: 30px;
 }
@@ -152,32 +154,30 @@ a.nav-listMenu--artist.active {
     cursor: pointer;
    
 }
-.user-loggin{
+.user-pfrofile{
     background-color: #1877f2;
     display: flex;
-    width: 40%;
-    height: 32px;
-    border-radius: 6px;
+    width: 64px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.6rem;
 }
 
 
 
-.btn-login {
+.frofile {
     border: none;
-    border-radius: 6px;
+    border-radius: 50%;
     color: white;
     /* width: 3rem; */
     text-decoration: none;
     margin: 0 auto !important;
     /* align-items: center; */
     /* margin: 5px; */
-    line-height: 32px;
+    line-height: 39px;
   
 }
-.btn-regitter {
-    background-color: #42b72a;
-    border: none; border-radius: 6px; 
-}
+
 
 .auto-right{
     display: inline-flex;

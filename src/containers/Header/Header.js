@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import * as actions from "../../store/actions";
 import Navigator from '../../components/Navigator';
 import { adminMenu } from './menuApp';
@@ -20,7 +19,7 @@ class Header extends Component {
 
                 {/* nút logout */}
                 <div className="btn btn-logout" onClick={processLogout}>
-                    <i className="fas fa-sign-out-alt"></i>
+                    <i className="fas fa-sign-out-alt"></i> Đăng xuất
                 </div>
             </div>
         );

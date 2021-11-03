@@ -1,18 +1,20 @@
 @import "../../styles/common.scss";
 
 .header-container {
-    z-index: 99;
-    display: flex;
+    width: 12%;
+    display : block;
+    margin-top: 60px;
     justify-content: space-between;
     background-color: $colormain;
     color: $common-text-color;
-    height: 40px;
-    position: relative;
+
+    position: sticky;
     .btn-logout {
         color: $common-text-color;
         line-height: 40px;
         height: 40px;
         padding: 0 10px;
+        margin-bottom: 30px;
         &:hover {
             background-color: darken($colormain, 5);
         }
@@ -21,4 +23,8 @@
             top: 12px;
         }
     }
+}
+
+.displaynone{
+    display: none;
 }
