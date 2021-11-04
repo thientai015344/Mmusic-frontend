@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link  } from "react-router-dom";
+import MyOverview from "./MyOverview"
 import './MyProfile.scss'
 
 class MyProFile extends Component {
@@ -44,7 +45,9 @@ class MyProFile extends Component {
                     </div>
                </div>
 
-               <div className="">
+               <div className="container-myprofile">
+                
+                <MyOverview />
 
                    </div>
                
