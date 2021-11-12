@@ -149,7 +149,7 @@ class UserManage extends Component {
                         isOpen={this.state.isOpenModalEditUserAdm}
                         toggleFromParent = {this.toggleUserEditModal}
                         currenUser = {this.state.userEdit}
-                        ediUser = {this.handleEditUser}
+                        editUser = {this.handleEditUser}
 
                     />
                 }

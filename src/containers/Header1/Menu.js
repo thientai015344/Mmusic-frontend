@@ -78,9 +78,7 @@ class Menu extends Component {
                                 </NavLink>
                                
                              </div>    
-                             {/* <div className="btn btn-logout" onClick={processLogout}>
-                                 <i className="fas fa-sign-out-alt"></i>
-                            </div> */}
+                             
                         </div>
                     </div>    
                
@@ -91,18 +89,7 @@ class Menu extends Component {
     }
 }
 
-// const mapStateToProps = state => {
-//     return {
-//     isLoggedIn: state.user.isLoggedIn
-//     };
-//     };
-    
-//     const mapDispatchToProps = dispatch => {
-//     return {
-//     processLogout: () => dispatch(actions.processLogout()),
-//     };
-//     };
-//connect(mapStateToProps, mapDispatchToProps)
+
 
 export default   (Menu);
 

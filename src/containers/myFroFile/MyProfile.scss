@@ -9,6 +9,71 @@ li{
         text-align: center;
         background-color: #f7f7f7;
 
+        .profile-setting{
+            float: right;
+            position: relative;
+            font-size: 1.4rem;
+            line-height: 40px; 
+            background-color: #ccc;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin: 10px 10px 0 0;
+            cursor: pointer;
+
+            
+            &:hover{ 
+                background-color: #877f7f
+            }
+            &:hover .sub-setting{ 
+                display: block;
+            }
+
+            .sub-setting{
+                display:none;
+                background-color: #b5b5b5;
+                position: absolute;
+                width: 232px;
+                right: -96px;
+                top: 60px;
+                cursor: move;
+                border-radius: 5px;
+
+                &::before{
+                    content: "";
+                    border-width: 20px 26px;
+                    border-style: solid;
+                    border-color: transparent;
+                    position: absolute;
+                    top: -30px;
+                    border-radius: 5px;
+                    width: 150px;
+                    right: 39px;
+               
+              
+                
+                }
+                
+            }
+           
+            .sub-setting button{
+                width: 190px;
+                height:35px;
+                font-size: 1.2rem;
+                display: block;
+                margin: 10px auto;
+                border: none;
+                outline: none;
+                border-radius: 5px;
+               // list-style: 35px;
+
+               &:hover{ background-color: #dfd3d3;}
+
+            }
+
+
+        }
+
         .profile-avata{ 
             border-radius: 50%;
             margin-bottom: 20px;
@@ -17,6 +82,7 @@ li{
                 width: 150px;
                 height: 150px;
                 border-radius: 50%;
+                margin-left: 58px;
             }
         }
 

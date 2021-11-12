@@ -72,7 +72,7 @@ constructor(props) {
     handleSaveChangeUser = () =>{
        let isValid = this.checkvalidateInput();
        if(isValid === true){
-            this.props.ediUser(this.state);
+            this.props.editUser(this.state);
        }
 
     }
