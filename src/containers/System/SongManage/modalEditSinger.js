@@ -1,5 +1,5 @@
 import React  from 'react';
-import './modalsinger.scss'
+//import './modalsinger.scss'
 //impoxrt { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import Lightbox from 'react-image-lightbox';

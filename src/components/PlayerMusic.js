@@ -285,7 +285,7 @@ class PlayerMusic extends React.PureComponent {
           name: "I'm new here",
           singer: 'jack',
           cover: 'http://www.lijinke.cn/music/1387583682387727.jpg',
-          musicSrc: `http://www.lijinke.cn/music/${Date.now()}.mp3`,
+          musicSrc: `http://www.lijinke.cn/music.mp3`,
         },
       ],
     })

@@ -23,7 +23,7 @@ class Menu extends Component {
                 <div className="allNavbar">
                    <div className=" Wrap navbar1">
                         <div className=" nav-logo ">
-                            <NavLink className="navbar-logo" to="/">
+                            <NavLink className="navbar-logo" to="/home">
                             <img src="../img/logo/logo.png" alt="" className="img-logo" />
                             </NavLink>
                         </div>  

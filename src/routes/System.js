@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Redirect, Route, Switch } from 'react-router-dom';
 import UserManage from '../containers/System/UserManage';
-import SongMAnage from '../containers/System/SongManage/Songmanage';
+import TrackManage from '../containers/System/SongManage/TrackManage';
 import SingerManage from '../containers/System/SingerManage/SingerManage';
 import RegisterPackageGroupOrAcc from '../containers/System/RegisterPackageGroupOrAcc';
 import Header from '../containers/Header/Header'
@@ -18,7 +18,7 @@ class System extends Component {
                     <div className="system-list">
                         <Switch>
                             <Route exact path="/system/user-manage" component={UserManage} />
-                            <Route path="/system/song-manage" component={SongMAnage} />
+                            <Route path="/system/song-manage" component={TrackManage} />
                             <Route path="/system/singer-manage" component={SingerManage} />
                             <Route path="/system/register-package-group-or-account" component={RegisterPackageGroupOrAcc} />
                             <Route component={() => { return (<Redirect to={systemMenuPath} />) }} />
