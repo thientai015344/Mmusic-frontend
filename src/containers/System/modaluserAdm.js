@@ -3,6 +3,7 @@ import {emitter} from '../../utils/emitter'
 import './modaluserAdm.scss'
 //impoxrt { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
+import { toast } from 'react-toastify';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 class ModalUserAdmin extends React.Component {
 constructor(props) {
@@ -64,8 +65,8 @@ listenToEmitter () {
         for( let i = 0; i < arrInput.length; i++ ){
           
             if(!this.state[arrInput[i]]){
-                isValid = false;
-                alert('missing parameter : ' +arrInput[i]);
+                isValid = false; 
+                toast.warn('missing parameter : ' +arrInput[i]);
                 break;
             }
         }

@@ -14,17 +14,14 @@ class ModalCreateTrack extends React.Component {
 constructor(props) {
     super(props);
     this.state = {
-
         ArraySingerForTrack : [],
-
         namesong: '',  //
         imgsong: '',
         filetrack: '',
         duration: '',
         SingerID: '',
-
         lyric: '', //
-        listen: '',
+        listen: 0,
         previewImgUrl : '',
         isOpen: false,
     }
@@ -42,7 +39,7 @@ listenToEmitter () {
             duration: '',
             SingerID: '',
             lyric: '',
-            listen: '',
+            listen: 0,
             previewImgUrl : '',
         })
     })
@@ -92,7 +89,7 @@ getALLsINGERForTrack = async() =>{
 
     checkvalidateInput = () => {
         let isValid = true;
-        let arrInput = [ 'namesong','filetrack','duration'];
+        let arrInput = [ 'namesong',];
         for( let i = 0; i < arrInput.length; i++ ){
           
             if(!this.state[arrInput[i]]){
@@ -131,28 +128,35 @@ getALLsINGERForTrack = async() =>{
     }
 
     handleOnchangeFileTrack = async (event) => {
-        let data = event.target.files;
-        let file = data[0];
-        if(file){
-            let base64 = await CommonUtils.getBase64(file);
-            console.log(' base64file :' , base64); 
-            this.setState({
-                
-           
-                filetrack : base64,
+        let files = event.target.files
+        let formData = new FormData();
+        formData.append('file', files[0])
+        formData.append('upload_preset', 'fileaudio')
 
-                
-            })
 
-          
-        }
+        const data = await fetch('https://api.Cloudinary.com/v1_1/thientai/video/upload',{
+            method: 'POST',
+            body: formData
+        }).then(res => res.json())
+
+        this.setState({
+            filetrack : data.secure_url,
+            duration : data.duration
+        })
+
+        
+
+        
+       
+        
+        
     }
 
   
     
     
     handleChange = (valueOption) => {
-        
+
 
         let IDsinger = valueOption[0].value
 
@@ -187,10 +191,13 @@ getALLsINGERForTrack = async() =>{
         })
  
        let  valueOption = this.state.SingerID
-        console.log('optopn',options)
+        console.log('optopn',options) 
+
+
+        
        
 
-
+//  bug 
        
 
         return (
@@ -214,15 +221,7 @@ getALLsINGERForTrack = async() =>{
 
                             
 
-                            <div className=" col-6 form-duration">
-                                <label htmlFor="inputduration4">Lyric</label>
-                                <input type="duration"
-                                    className="form-control"
-                                    value={this.state.duration}
-                                    name="duration" placeholder="duration" 
-                                    onChange={(event)=>{this.handleOnchangeInput(event, 'duration')}}
-                                />
-                            </div>
+                            
 
 
                             
@@ -242,15 +241,7 @@ getALLsINGERForTrack = async() =>{
                                 />
                             </div>
 
-                            <div className=" col-4 form-listen">
-                                <label htmlFor="inputlisten4">Lyric</label>
-                                <input type="listen"
-                                    className="form-control"
-                                    value={this.state.listen}
-                                    name="listen" placeholder="listen" 
-                                    onChange={(event)=>{this.handleOnchangeInput(event, 'listen')}}
-                                />
-                            </div>
+                           
      
 
 
@@ -258,8 +249,8 @@ getALLsINGERForTrack = async() =>{
 
                         <div className="container-input-3">
                             
-                        <div className=" col-12 form-lyric">
-                                <label htmlFor="inputlyric4">Lyric</label>
+                        <div className=" col-12 form-singer">
+                                <label htmlFor="inputsinger4">Singer</label>
 
                                     <Select
                                      isMulti
@@ -345,11 +336,4 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModalCreateTrack);
-
-
-
-
-
-
-
 

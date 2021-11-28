@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import {getALLTrack, createNewTrack, deleteTrack, editTrack } from '../../../services/TrackSevice';
 import {emitter} from '../../../utils/emitter'
 import ModalCreateTrack from './modalcreatetrack'
-import ModalEditSinger from './modalEditSinger'
+import ModalEditTrack from './modalEditTrack'
 import { connect } from 'react-redux'
 class TrackManage extends Component {
 
@@ -13,7 +13,7 @@ class TrackManage extends Component {
         this.state = {
             ArrayTrack : [],
             isOpenModalTrack : false, 
-            isOpenModalEditSinger : false, 
+            isOpenModalEditTrack : false, 
             trackEdit : {},
            
             
@@ -38,7 +38,7 @@ class TrackManage extends Component {
         }
     }
 
-    handleAddNewSinger = () =>{
+    handleAddNewTrack = () =>{
 
         this.setState({
             isOpenModalTrack :true,
@@ -56,24 +56,25 @@ class TrackManage extends Component {
 
 
 
-    toggleSingerEditModal = () =>{
-        this.setState ({isOpenModalEditSinger : !this.state.isOpenModalEditSinger})
+    toggleTrackEditModal = () =>{
+        this.setState ({isOpenModalEditTrack : !this.state.isOpenModalEditTrack})
     }
 
 
     createNewTrack = async (data) =>{
         try {
            let response = await createNewTrack(data);
+           console.log('datacreat',response);
            if(response && response.errCode !== 0){
                alert(response.errMessage);
            }else {
                await this.getALLTrack();
                this.setState({
-                isOpenModalSinger : false
+                isOpenModalTrack : false
                })
                emitter.emit('EVENT_CLEAR_MODAL_DATA')
 
-                toast.success('❤️ create singer successfully ❤️')
+                toast.success('❤️ create track successfully ❤️')
             }
             
         
@@ -83,11 +84,11 @@ class TrackManage extends Component {
       
     }
 
-    handleDelete = async (singer) => {
+    handleDelete = async (track) => {
 
   
         try {
-            let res = await deleteTrack(singer.id)
+            let res = await deleteTrack(track.id)
             if(res && res.errCode === 0){
 
                 await this.getALLTrack();
@@ -106,28 +107,29 @@ class TrackManage extends Component {
 
 
     }
-    handleEdit = (singer) =>{
+    handleEdit = (track) =>{
 
+        console.log('track' , track)
 
         this.setState ({
-            isOpenModalEditSinger : true,
-            singerEdit : singer
+            isOpenModalEditTrack : true,
+            trackEdit : track
         })
 
        
 
     }
 
-    handleEditSinger = async(singer) => {
+    handleEditTrack = async(track) => {
         try {
             
-            let res = await editTrack(singer);
+            let res = await editTrack(track);
             if(res && res.errCode === 0){
                 this.setState({ 
-                    isOpenModalEditSinger: false,
+                    isOpenModalEditTrack: false,
                 })
                 await this.getALLTrack();
-                toast.success('edit singer successfully')
+                toast.success('edit track successfully')
             }
             else{
                 alert(res.errCode)
@@ -149,8 +151,9 @@ class TrackManage extends Component {
 
     render() {
         let ArrayTrack = this.state.ArrayTrack;
+   
         return (
-            <div className="singer-container">
+            <div className="track-container">
                 
                 <ModalCreateTrack
 
@@ -159,13 +162,13 @@ class TrackManage extends Component {
                 createNewTrack = {this.createNewTrack}
                 
                 />
-                {this.state.isOpenModalEditSinger &&
-                    <ModalEditSinger
+                {this.state.isOpenModalEditTrack &&
+                    <ModalEditTrack
 
-                        isOpen={this.state.isOpenModalEditSinger}
-                        toggleFromParent = {this.toggleSingerEditModal}
-                        currenSinger = {this.state.singerEdit}
-                        editSinger = {this.handleEditSinger}
+                        isOpen={this.state.isOpenModalEditTrack}
+                        toggleFromParent = {this.toggleTrackEditModal}
+                        currenTrack = {this.state.trackEdit}
+                        editTrack = {this.handleEditTrack}
 
                     />
                 }
@@ -176,7 +179,7 @@ class TrackManage extends Component {
                 <div className="mx-3 mb-3">
 
                     <button className="btn btn-primary px-3"
-                        onClick ={() => this.handleAddNewSinger()}
+                        onClick ={() => this.handleAddNewTrack()}
                          ><i className="fas fa-plus "></i> 
                         create Track
                     </button>
@@ -184,7 +187,7 @@ class TrackManage extends Component {
 
 
                 </div>
-                <div className="singer-table mx-3">
+                <div className="track-table mx-3">
                     <table id="customers">
                         <tbody>
                         <tr>

@@ -23,6 +23,7 @@ const deleteTrack = (TrackId) => {
 }
 
 const editTrack = (data) => {
+    console.log('dđaaaa',data)
     return axios.put('/api/edit-track',data);
 }
 

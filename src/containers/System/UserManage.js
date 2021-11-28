@@ -5,6 +5,7 @@ import './userManage.scss'
 import {getAllUSER, createNewUserAdm, deleteUserAdm, editUserAdm} from '../../services/USERService';
 import ModalUserAdm from './modaluserAdm';
 import ModalEditUser from './modalEditUser';
+import { toast } from 'react-toastify';
 import {emitter} from '../../utils/emitter'
 
 class UserManage extends Component {
@@ -58,7 +59,7 @@ class UserManage extends Component {
         try {
            let response = await createNewUserAdm(data);
            if(response && response.errCode !== 0){
-               alert(response.errMessage);
+            toast.error(' tai khoa da ton taij ')           
            }else {
                await this.getAllUsers();
                this.setState({
