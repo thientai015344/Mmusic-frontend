@@ -30,6 +30,7 @@
     "react-image-lightbox": "^5.1.4",
     "react-intl": "^5.20.2",
     "react-jinke-music-player": "^4.24.2",
+    "react-player": "^2.9.0",
     "react-redux": "^7.2.4",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",

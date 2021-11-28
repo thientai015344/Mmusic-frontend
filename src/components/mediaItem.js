@@ -58,7 +58,7 @@ class MediaItem extends Component {
                     <div className="item-media">
                         <div className="media-left">
                             <div className="media-picture">
-                                <img className="media-picture--img" src="./img/avata/hoangton.jpg"  alt=""/>
+                                <img className="media-picture--img" src={this.props.imgsong}  alt=""/>
                                 <div className="media-overlay">
                                     <button className="mediasong-icon" onClick={() => this.changeiconButton()} >
                                         {this.displaycheck()}
@@ -67,16 +67,16 @@ class MediaItem extends Component {
                             </div>                   
                             <div className="decription">
                                 <div className="song-name">
-                                 Yeu em rat nhieu
+                                 {this.props.namesong}
                                 </div>
                                 <a href={"/singer/" + this.props.singerName + ".html"} className="singer-name">
-                                    Hoang Ton
+                                    {this.props.singerName}
                                 </a>
                             </div>
 
                         </div>
                         <div className="media-duration">
-                        4:47
+                    {this.props.duration}
                         </div>
                         <div className="media-right">
                             <div className="media-icon">
