@@ -17,9 +17,17 @@ class PageSong extends Component {
         super(props);
         this.state = {
             ArrayTrack : [],
+            getarray : []
         }
     }
 
+    getTrackforPlayer = () =>{
+
+       
+
+        alert('click mee')
+
+      }
 
 
 
@@ -35,10 +43,14 @@ class PageSong extends Component {
             let tracks =response.track.reverse();
             this.setState ({ 
                 ArrayTrack : tracks
+                 
              })
              
         }
     }
+
+
+   
 
 
 
@@ -46,6 +58,21 @@ class PageSong extends Component {
 
     render() {
         let ArrayTrack = this.state.ArrayTrack;
+
+        let trackAray = this.state.ArrayTrack; 
+        console.log('singerfortracksss',trackAray)
+        const audioLists = trackAray && trackAray.map(track =>{
+          let imageBase64 = '';
+          if(track.imgsong){
+          
+              imageBase64 = new Buffer(track.imgsong, 'base64').toString('binary');
+          }
+        return {name: track.namesong, cover: imageBase64, musicSrc : track.filetrack, singer : track.singer.singername}
+        })
+
+        
+
+
         return (
             <>
 
@@ -56,7 +83,7 @@ class PageSong extends Component {
 
                 {ArrayTrack && ArrayTrack.map((item, index) => {
 
-
+                            console.log('singer',item.singer.singername)
                             let imageBase64 = '';
                                         if(item.imgsong){
                                         
@@ -64,15 +91,21 @@ class PageSong extends Component {
                                         }
 
 
+                        
+
+
                                  return(
 
-                                    console.log('fff',item.namesong ),
+                                 
 
-                                         <MediaItem key={index}
+                                         <MediaItem 
+                                         gettrackkk = {() => this.getTrackforPlayer()}
+                                         key={index}
                                           namesong={item.namesong} 
                                           imgsong = {imageBase64}
                                           duration={item.duration}
                                           singername={item.singer.singername} 
+                                          getarray ={audioLists}
                                             />
                                    
                                     )

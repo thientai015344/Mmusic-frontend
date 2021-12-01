@@ -2,7 +2,8 @@ import './mediaItem.css';
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faHeart, faLink, faDownload, faPause, faPlay} from '@fortawesome/free-solid-svg-icons'
-
+import {connect} from 'react-redux'
+import * as actions from '../store/actions'
 
 
 class MediaItem extends Component {
@@ -33,7 +34,10 @@ class MediaItem extends Component {
         }
     }
 
-    changeiconButton =() =>{
+    changeiconButton =(track) =>{
+        this.props.getTrackfrompageSong(track)
+///////////////////////////////////////////////////////
+
         if(this.state.status === 0){
             
             this.setState({status: 1})
@@ -44,13 +48,16 @@ class MediaItem extends Component {
        
     }
 
-   
+    getTrackforPlayer =() =>{
+        this.props.getTrackforPlayer();
+    }
 
 
 
 
 
     render() {
+        let array = this.props.getarray
         return (
             <div key={this.props.id} className="Wrap width">
                 <div className="list-item-media  ">
@@ -60,7 +67,7 @@ class MediaItem extends Component {
                             <div className="media-picture">
                                 <img className="media-picture--img" src={this.props.imgsong}  alt=""/>
                                 <div className="media-overlay">
-                                    <button className="mediasong-icon" onClick={() => this.changeiconButton()} >
+                                    <button className="mediasong-icon" onClick={() => this.changeiconButton(array)} >
                                         {this.displaycheck()}
                                     </button>
                                 </div> 
@@ -98,4 +105,10 @@ class MediaItem extends Component {
     }
 }
 
-export default MediaItem;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getTrackfrompageSong : (listtrack) => dispatch(actions.getTrack(listtrack))
+    };
+};
+
+export default connect( null, mapDispatchToProps)(MediaItem);
