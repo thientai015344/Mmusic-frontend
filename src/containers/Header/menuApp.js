@@ -22,10 +22,10 @@ export const adminMenu = [
         
     },
     {
-        name:  'Quản lý Playlist',
+        name:  'Quản lý Album',
         menus:  [
                     {
-                        name:  'Quản lý Playlist', link: '/system/playlist-manage'
+                        name:  'Quản lý Album', link: '/system/album-manage'
                     }
         ]
         

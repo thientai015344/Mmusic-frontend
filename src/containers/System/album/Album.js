@@ -1,23 +1,25 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
-import {getALLSinger, createNewSinger, deleteSinger, editSinger } from '../../../services/singerSevice';
+import {getALLAlbum, createNewAlbum, deleteAlbum, editAlbum } from '../../../services/albumSevice';
+import {getALLTrack} from '../../../services/TrackSevice';
 import {emitter} from '../../../utils/emitter'
-
-import ModalCreateSinger from './modalcreatesinger'
-import ModalEditSinger from './modalEditSinger'
+ import ModalCreateAlbum from './modalcreatealbum'
+ import ModalEditAlbum from './modalEditAlbum'
 import { connect } from 'react-redux'
-import './SingerManage.scss'
+import './AlbumManage.scss'
 
-class SingerManage extends Component {
+class AlbumManage extends Component {
 
  
     constructor(props) {
         super(props);
         this.state = {
-            ArraySinger : [],
-            isOpenModalSinger : false, 
-            isOpenModalEditSinger : false, 
-            singerEdit : {},
+            ArrayAlbum : [],
+            ArrayTrack : [],
+            isOpenModalAlbum : false, 
+            isOpenModalEditAlbum : false, 
+            isOpenModalAddTrack : false,
+            albumEdit : {},
            
             
 
@@ -26,58 +28,79 @@ class SingerManage extends Component {
 
     async componentDidMount() {
        
-        await this.getALLSinger();
+        await this.getALLAlbum();
 
     }
 
-    getALLSinger = async() =>{
-        let response = await getALLSinger('ALL')
-
+    getALLAlbum = async() =>{
+        let response = await getALLAlbum('ALL')
+        
         if(response && response.errCode === 0) {
-            let singers =response.singer.reverse();
+            let albums =response.album.reverse();
+            console.log('>>>> check data Alibum',albums)
             this.setState ({ 
-                ArraySinger : singers
+                ArrayAlbum : albums
              })
              
         }
     }
 
-    handleAddNewSinger = () =>{
+
+    getALLTrack = async() =>{
+        let response = await getALLTrack('ALL')
+        
+        if(response && response.errCode === 0) {
+            let tracks =response.album.reverse();
+            console.log('>>>> check data Alibum',tracks)
+            this.setState ({ 
+                ArrayTrack : tracks
+             })
+             
+        }
+    }
+
+    handleAddNewAlbum = () =>{
 
         this.setState({
-            isOpenModalSinger :true,
+            isOpenModalAlbum :true,
         })
 
     }
 
 
 
-    toggleSingerModal = () =>{
+    toggleAlbumModal = () =>{
 
-       this.setState({isOpenModalSinger : !this.state.isOpenModalSinger, })
+       this.setState({isOpenModalAlbum : !this.state.isOpenModalAlbum, })
 
     }
 
+    toggleAddTrackModal = () =>{
+
+        this.setState({isOpenModalAddTrack : !this.state.isOpenModalAddTrack, })
+ 
+     }
 
 
-    toggleSingerEditModal = () =>{
-        this.setState ({isOpenModalEditSinger : !this.state.isOpenModalEditSinger})
+
+    toggleAlbumEditModal = () =>{
+        this.setState ({isOpenModalEditAlbum : !this.state.isOpenModalEditAlbum})
     }
 
 
-    createNewSinger = async (data) =>{
+    createNewAlbum = async (data) =>{
         try {
-           let response = await createNewSinger(data);
+           let response = await createNewAlbum(data);
            if(response && response.errCode !== 0){
                alert(response.errMessage);
            }else {
-               await this.getALLSinger();
+               await this.getALLAlbum();
                this.setState({
-                isOpenModalSinger : false
+                isOpenModalAlbum : false
                })
                emitter.emit('EVENT_CLEAR_MODAL_DATA')
 
-                toast.success('❤️ create singer successfully ❤️')
+                toast.success('❤️ create album successfully ❤️')
             }
             
         
@@ -87,16 +110,16 @@ class SingerManage extends Component {
       
     }
 
-    handleDelete = async (singer) => {
+    handleDelete = async (album) => {
 
   
         try {
-            let res = await deleteSinger(singer.id)
+            let res = await deleteAlbum(album.id)
             if(res && res.errCode === 0){
 
-                await this.getALLSinger();
+                await this.getALLAlbum();
 
-                toast.success(` ❤️, ""  delete singer successfully + ""+   ❤️ ` )
+                toast.success(` ❤️, ""  delete album successfully + ""+   ❤️ ` )
 
             }
             else{
@@ -110,28 +133,28 @@ class SingerManage extends Component {
 
 
     }
-    handleEdit = (singer) =>{
+    handleEdit = (album) =>{
 
 
         this.setState ({
-            isOpenModalEditSinger : true,
-            singerEdit : singer
+            isOpenModalEditAlbum : true,
+            albumEdit : album
         })
 
        
 
     }
 
-    handleEditSinger = async(singer) => {
+    handleEditAlbum = async(album) => {
         try {
             
-            let res = await editSinger(singer);
+            let res = await editAlbum(album);
             if(res && res.errCode === 0){
                 this.setState({ 
-                    isOpenModalEditSinger: false,
+                    isOpenModalEditAlbum: false,
                 })
-                await this.getALLSinger();
-                toast.success('edit singer successfully')
+                await this.getALLAlbum();
+                toast.success('edit album successfully')
             }
             else{
                 alert(res.errCode)
@@ -144,6 +167,14 @@ class SingerManage extends Component {
         
     }
 
+    handleAddTrackForlbum = () =>{
+
+        this.setState({
+            isOpenModalAlbum :true,
+        })
+
+    }
+
     
 
     
@@ -152,55 +183,58 @@ class SingerManage extends Component {
 
 
     render() {
-        let ArraySinger = this.state.ArraySinger;
+        let ArrayAlbum = this.state.ArrayAlbum;
         return (
-            <div className="singer-container">
+            <div className="album-container">
                 
-                <ModalCreateSinger
-
-                isOpen={this.state.isOpenModalSinger}
-                toggleFromParent = {this.toggleSingerModal}
-                createNewSinger = {this.createNewSinger}
+                <ModalCreateAlbum
+                isOpen={this.state.isOpenModalAlbum}
+                toggleFromParent = {this.toggleAlbumModal}
+                createNewAlbum = {this.createNewAlbum}
                 
                 />
-                {this.state.isOpenModalEditSinger &&
-                    <ModalEditSinger
+                {this.state.isOpenModalEditAlbum &&
+                    <ModalEditAlbum
 
-                        isOpen={this.state.isOpenModalEditSinger}
-                        toggleFromParent = {this.toggleSingerEditModal}
-                        currenSinger = {this.state.singerEdit}
-                        editSinger = {this.handleEditSinger}
+                        isOpen={this.state.isOpenModalEditAlbum}
+                        toggleFromParent = {this.toggleAlbumEditModal}
+                        currenAlbum = {this.state.albumEdit}
+                        editAlbum = {this.handleEditAlbum}
 
                     />
                 }
                 
                 <div className="title text-center">
-                        singer MANAGE 
+                        album MANAGE 
                 </div>
                 <div className="mx-3 mb-3">
 
                     <button className="btn btn-primary px-3"
-                        onClick ={() => this.handleAddNewSinger()}
+                        onClick ={() => this.handleAddNewAlbum()}
                          ><i className="fas fa-plus "></i> 
-                        create singer
+                        create album
+                    </button>
+
+                    <button className="btn btn-info px-3"
+                        onClick ={() => this.handleAddTrackForlbum()}
+                         ><i className="fas fa-plus "></i> 
+                         Add Track For Album
                     </button>
 
                 </div>
-                <div className="singer-table mx-3">
+                <div className="album-table mx-3">
                     <table id="customers">
                         <tbody>
                         <tr>
-                            <th>singername</th>
-                            <th>description</th>
+                            <th>albumname</th>
                             <th>action</th>
                         </tr>
                        
-                            {ArraySinger && ArraySinger.map((item, index) => {
+                            {ArrayAlbum && ArrayAlbum.map((item, index) => {
                                  return(
                                     <tr key={index}>
-                                         <td>{item.singername}</td>
-                                         <td>{item.description}</td>
-                                         <td>
+                                         <td>{item.nameAlbum}</td>      
+                                         <td className="action">
                                              <button className="btn-edit"  onClick = {() =>{this.handleEdit(item)}} >
                                                  <i className="fas fa-edit">
                                                  </i></button>
@@ -250,4 +284,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SingerManage);
+export default connect(mapStateToProps, mapDispatchToProps)(AlbumManage);

@@ -3,35 +3,35 @@ import axios from "../axios"
 
 
 //template string
-const getALLSinger = (inputId) => {
-    return axios.get(`/api/get-all-singer?id=${inputId}`)
+const getALLAlbum = (inputId) => {
+    return axios.get(`/api/get-all-album?id=${inputId}`)
 }
 
-const createNewSinger = (data) => {
+const createNewAlbum = (data) => {
     console.log(data)
     console.log('check data from service', data)
-    return axios.post('/api/create-new-singer', data);
+    return axios.post('/api/create-new-album', data);
 }
 
-const deleteSinger = (singerId) => {
-    return axios.delete('/api/delete-singer',{
+const deleteAlbum = (albumId) => {
+    return axios.delete('/api/delete-album',{
         // headers: {Authorization: authorizationToken},
-        data: {id: singerId}
+        data: {id: albumId}
 
 
     });
 }
 
-const editSinger = (data) => {
-    return axios.put('/api/edit-singer',data);
+const editAlbum = (data) => {
+    return axios.put('/api/edit-album',data);
 }
 
 
 export {
-    getALLSinger, 
-    createNewSinger,
-    deleteSinger,
-    editSinger,
+    getALLAlbum, 
+    createNewAlbum,
+    deleteAlbum,
+    editAlbum,
     
 
 

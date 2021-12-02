@@ -5,6 +5,7 @@ import {emitter} from '../../../utils/emitter'
 import ModalCreateTrack from './modalcreatetrack'
 import ModalEditTrack from './modalEditTrack'
 import { connect } from 'react-redux'
+import './trackManage.scss'
 class TrackManage extends Component {
 
  
@@ -220,6 +221,12 @@ class TrackManage extends Component {
                                                  <i 
                                              className="fas fa-trash">
                                                  </i></button>
+
+                                                 <button className="btn-add-album"  onClick = {() =>{this.handleEdit(item)}} >
+                                                 <i className="fas fa-folder-plus">
+                                                 </i>
+                                                 </button>
+                                                 
                                          </td>
                                      </tr>
                                     )

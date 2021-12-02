@@ -7,6 +7,7 @@ import SingerManage from '../containers/System/SingerManage/SingerManage';
 import RegisterPackageGroupOrAcc from '../containers/System/RegisterPackageGroupOrAcc';
 import Header from '../containers/Header/Header'
 import './system.scss';
+import Album from '../containers/System/album/Album';
 
 class System extends Component {
     render() {
@@ -20,6 +21,7 @@ class System extends Component {
                             <Route exact path="/system/user-manage" component={UserManage} />
                             <Route path="/system/song-manage" component={TrackManage} />
                             <Route path="/system/singer-manage" component={SingerManage} />
+                            <Route path="/system/album-manage" component={Album} />
                             <Route path="/system/register-package-group-or-account" component={RegisterPackageGroupOrAcc} />
                             <Route component={() => { return (<Redirect to={systemMenuPath} />) }} />
                         </Switch>

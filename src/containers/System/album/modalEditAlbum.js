@@ -1,5 +1,5 @@
 import React  from 'react';
-import './modalsinger.scss'
+import './modalalbum.scss'
 //impoxrt { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import Lightbox from 'react-image-lightbox';
@@ -7,15 +7,15 @@ import 'react-image-lightbox/style.css';
 import CommonUtils from '../../../utils/CommonUtils'
 import _ from 'lodash';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
-class ModalEditSinger extends React.Component {
+class ModalEditAlbum extends React.Component {
 constructor(props) {
     super(props);
     this.state = {
         id :'',
-        singername : '',
-        description : '',
-        previewImgUrl: '',
-        avatasinger : '',
+        nameAlbum : '',
+        previewImgUrl : '',
+        imgalbum : '',
+        
    
 
     }
@@ -46,22 +46,22 @@ constructor(props) {
     }
 
     componentDidMount() {
-       let singer = this.props.currenSinger;
-        if(singer && !_.isEmpty(singer)){
+       let album = this.props.currenAlbum;
+       console.log('check data edit', album);
+        if(album && !_.isEmpty(album)){
 
             let imageBase64 = '';
-            if(singer.avatasinger){
+            if(album.imgAlbum){
                
-                imageBase64 = new Buffer(singer.avatasinger, 'base64').toString('binary');
+                imageBase64 = new Buffer(album.imgAlbum, 'base64').toString('binary');
             }
 
            
 
             this.setState({
-                id: singer.id,
-                singername :singer.singername, 
-                description :singer.description,
-                avatasinger : imageBase64,
+                id: album.id,
+                nameAlbum :album.nameAlbum,  
+                imgalbum : imageBase64,
                 previewImgUrl: imageBase64,
 
             })
@@ -71,7 +71,7 @@ constructor(props) {
 
     checkvalidateInput = () => {
         let isValid = true;
-        let arrInput = ['singername', 'description', 'avatasinger'];
+        let arrInput = ['nameAlbum', 'imgalbum'];
         for( let i = 0; i < arrInput.length; i++ ){
           
             if(!this.state[arrInput[i]]){
@@ -93,20 +93,20 @@ constructor(props) {
             this.setState({
                 
                 previewImgUrl : objectURL,
-                avatasinger : base64,
+                imgalbum : base64,
 
                 
             })
 
-            //console.log('hekko', avatasinger)
+            //console.log('hekko', imgalbum)
 
         }
     }
 
-    handleSaveChangeSinger = () =>{
+    handleSaveChangeAlbum = () =>{
        let isValid = this.checkvalidateInput();
        if(isValid === true){
-            this.props.editSinger(this.state);
+            this.props.editAlbum(this.state);
        }
 
     }
@@ -126,38 +126,29 @@ constructor(props) {
     render() {
      
         return (
-            <Modal isOpen={this.props.isOpen} toggle={() =>{this.toggle()}} className={'modal-singer-container'}>
-                <ModalHeader toggle={() =>{this.toggle()}}>Edit Singer</ModalHeader>
+            <Modal isOpen={this.props.isOpen} toggle={() =>{this.toggle()}} className={'modal-album-container'}>
+                <ModalHeader toggle={() =>{this.toggle()}}>Edit Album</ModalHeader>
                     <ModalBody>
 
                         <div className="container-input-1">
-                            <div className=" form-singername">
-                                <label htmlFor="inputSingername4">singername</label>
-                                <input type="singername"
+                            <div className=" form-nameAlbum">
+                                <label htmlFor="inputNameAlbum4">name Album</label>
+                                <input type="nameAlbum"
                                     className="form-control" 
-                                    name="singername"
-                                    value={this.state.singername}
-                                    placeholder="singername" 
+                                    name="nameAlbum"
+                                    value={this.state.nameAlbum}
+                                    placeholder="nameAlbum" 
                                     
-                                    onChange={(event)=>{this.handleOnchangeInput(event, 'singername')}} />
+                                    onChange={(event)=>{this.handleOnchangeInput(event, 'nameAlbum')}} />
                                 </div>
 
-                            <div className=" form-description">
-                            <label htmlFor="inputPassword4">description</label>
-                            <input type="description"
-                                className="form-control"
-                                value={this.state.description}
-                               
-                                name="description" placeholder="description" 
-                                onChange={(event)=>{this.handleOnchangeInput(event, 'description')}}/>
-                            </div>
                         </div>
 
 
                         <div className="container-input-2">
-                            <div className=" form-avatasinger">
-                                <label className="upload" htmlFor="inputavatasinger">uploadfile<i className="fas fa-upload"></i> </label>
-                                <input hidden id="inputavatasinger" type="file"
+                            <div className=" form-imgalbum">
+                                <label className="upload" htmlFor="inputavataalbum">uploadfile<i className="fas fa-upload"></i> </label>
+                                <input hidden id="inputavataalbum" type="file"
                                     onChange={(event)=>{this.handleOnchangeImage(event)}}/>
                                 </div>
 
@@ -189,7 +180,7 @@ constructor(props) {
 
                     </ModalBody>
                 <ModalFooter>
-                <Button color="primary" className="px-3" onClick={() =>{this.handleSaveChangeSinger()}}>Save</Button>{' '}
+                <Button color="primary" className="px-3" onClick={() =>{this.handleSaveChangeAlbum()}}>Save</Button>{' '}
                 <Button color="secondary" className="px-3" onClick={() =>{this.toggle()}}>Cancel</Button>
                 
 
@@ -210,7 +201,7 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModalEditSinger);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalEditAlbum);
 
 
 

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import './menu.css';
-import { connect } from 'react-redux';
-import * as actions from "../../store/actions";
 import { NavLink } from "react-router-dom";
 
 class Menu extends Component {
@@ -13,9 +11,7 @@ class Menu extends Component {
         }
 
     }
-
-
-       
+   
 
     render() {
         return (
@@ -52,8 +48,8 @@ class Menu extends Component {
                                 </li>
                                 {/* playlist */} 
                                 <li className="navbar-li-playlist">
-                                    <NavLink activeclassname="active" className="nav-listMenu--playlist" to="/playlist">
-                                            playlist</NavLink>
+                                    <NavLink activeclassname="active" className="nav-listMenu--playlist" to="/album">
+                                            Album</NavLink>
                                     
                                 </li>
                                 {/* artist */} 
