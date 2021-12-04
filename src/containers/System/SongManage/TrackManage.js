@@ -154,7 +154,9 @@ class TrackManage extends Component {
         let ArrayTrack = this.state.ArrayTrack;
    
         return (
+
             <div className="track-container">
+
                 
                 <ModalCreateTrack
 

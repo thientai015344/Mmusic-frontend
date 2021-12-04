@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-import MediaItem from '../../components/mediaItem';
+import PlaylistItem from '../../components/playlistItem';
 import Title from '../../components/Title';
-
-import {getALLTrack} from '../../services/TrackSevice';
-
-
-
-
-class PageSong extends Component {
+import {getALLAlbum} from '../../services/albumSevice'
+import './pageAlbum.scss'
+class PageAlbum extends Component {
 
 
 
@@ -17,32 +13,22 @@ class PageSong extends Component {
         super(props);
         this.state = {
             ArrayAlbum : [],
-            getarray : []
         }
     }
-
-    getTrackforPlayer = () =>{
-
-       
-
-        alert('click mee')
-
-      }
-
 
 
     async componentDidMount() {
        
-        await this.getALLTrack();
+        await this.getALLAlbum();
 
     }
 
-    getALLTrack = async() =>{
-        let response = await getALLTrack('ALL')
+    getALLAlbum = async() =>{
+        let response = await getALLAlbum('ALL')
         if(response && response.errCode === 0) {
-            let tracks =response.track.reverse();
+            let albums =response.album.reverse();
             this.setState ({ 
-                ArrayTrack : tracks
+                ArrayAlbum : albums
                  
              })
              
@@ -57,18 +43,17 @@ class PageSong extends Component {
 
 
     render() {
-        let ArrayTrack = this.state.ArrayTrack;
-
-        let trackAray = this.state.ArrayTrack; 
-        console.log('singerfortracksss',trackAray)
-        const audioLists = trackAray && trackAray.map(track =>{
+        let albumAray = this.state.ArrayAlbum; 
+        const audioLists = albumAray && albumAray.map(album =>{
           let imageBase64 = '';
-          if(track.imgsong){
+          if(album.imgAlbum){
           
-              imageBase64 = new Buffer(track.imgsong, 'base64').toString('binary');
+              imageBase64 = new Buffer(album.imgAlbum, 'base64').toString('binary');
           }
-        return {name: track.namesong, cover: imageBase64, musicSrc : track.filetrack, singer : track.singer.singername}
+        return {name: album.nameAlbum, cover:imageBase64, id: album.id }
         })
+
+
 
         
 
@@ -78,41 +63,29 @@ class PageSong extends Component {
 
 
                <div className="Marding-60">
-                <Title title=" Bài Hát"  />
+                <Title title=" Album moi nhat"  />
+                <div className="Marding-item Wrap">
 
+                {audioLists && audioLists.map((item, index) => {
 
-                {ArrayTrack && ArrayTrack.map((item, index) => {
+                        return(
 
-                            console.log('singer',item.singer.singername)
-                            let imageBase64 = '';
-                                        if(item.imgsong){
-                                        
-                                            imageBase64 = new Buffer(item.imgsong, 'base64').toString('binary');
-                                        }
-
-
+                                <PlaylistItem    
+                                key={index}
+                                id ={item.id}
+                                name={item.name} 
+                                img={item.cover}
+                               
+                                //getarray ={audioLists}
+                                />
                         
+                        )
+
+                    })
+                }
+                </div>
 
 
-                                 return(
-
-                                 
-
-                                         <MediaItem 
-                                         gettrackkk = {() => this.getTrackforPlayer()}
-                                         key={index}
-                                          namesong={item.namesong} 
-                                          imgsong = {imageBase64}
-                                          duration={item.duration}
-                                          singername={item.singer.singername} 
-                                          getarray ={audioLists}
-                                            />
-                                   
-                                    )
-
-                                })
-                            }
-         
 
                 
 
@@ -128,4 +101,4 @@ class PageSong extends Component {
     }
 }
 
-export default PageSong;
+export default PageAlbum;

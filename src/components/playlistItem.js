@@ -3,6 +3,7 @@ import './playlistItem.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faPause, faPlay} from '@fortawesome/free-solid-svg-icons'
 import { NavLink } from 'react-router-dom'
+import { withRouter } from 'react-router'
 
 
 
@@ -10,8 +11,7 @@ import { NavLink } from 'react-router-dom'
 
 
 
-
-export default class PlaylistItem extends Component {
+ class PlaylistItem extends Component {
     constructor(props) {
         super(props)
         this.state ={
@@ -53,22 +53,23 @@ export default class PlaylistItem extends Component {
        
     }
 
+   
   
  
 
     render() {
-    
+        let id = this.props.id    
         return (
    
             <>
             
-                <div className="music-item">
-
+                <div className="music-item" >
+                        
                     <div className="music-picture">
                             <div  className="music-picture--link">
-                                <img className="music-picture--img" src='./img/avata/hoangton.jpg' alt=""/>
+                                <img className="music-picture--img" src={this.props.img} alt=""/>
                             </div> 
-                            <NavLink to ="/playlist"  className="music-overlay">
+                            <NavLink to ={`/album/${id}`}  className="music-overlay">
                                 <button className="icon" onClick={() => this.changeiconButton()} >
                                     {this.displaycheck()}
                                 </button>
@@ -76,12 +77,10 @@ export default class PlaylistItem extends Component {
                     </div> 
                     
                     <div className="contet-playlist">
-                        <NavLink to ="/playlist/" className="music_name">
-                            Yêu em Rất NHiều
+                        <NavLink to ={`/album/${id}`} className="music_name">
+                          {this.props.name}
                         </NavLink>
-                        <p   className="singer-name">
-                            Hoàng Tôn
-                        </p>
+                        
                 </div>
                    
 
@@ -95,3 +94,4 @@ export default class PlaylistItem extends Component {
    
 }
 
+ export default withRouter(PlaylistItem );

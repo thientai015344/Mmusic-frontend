@@ -17,6 +17,8 @@ import Home from '../routes/Home';
 //
 import  CustomScrollbars from '../components/CustomScrollbars';
 import PlayerMusic from '../components/PlayerMusic';
+import PageAlbum from './pageAlbum/PageAlbum';
+import PageDetailAlbum from './pageAlbum/pageDetailAlbum';
 
 class App extends Component {
 
@@ -53,6 +55,9 @@ class App extends Component {
                                          <Route exact path={path.HOME} component={(Home)} />
                                          <Route  path={path.HOMEPAGE} component={(HomePage)} /> 
                                          <Route path={path.SONG} component={(PageSong)} />
+                                         <Route exact path={path.ALBUM} component={(PageAlbum)} />
+                                         <Route  path="/album/:id" component={(PageDetailAlbum)} />
+
                                          <Route path={path.MY_MUSIC} component={(MyProFile)} />
                                        
                                        

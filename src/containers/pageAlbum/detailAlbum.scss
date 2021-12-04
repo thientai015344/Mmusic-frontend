@@ -1,0 +1,44 @@
+.detailAlbum {
+    max-width: 1140px;
+
+    margin: 100px auto 0 auto;
+    display : flex;
+    .imgAlbum {
+        margin-right: 30px;
+        .imgAlbum img {
+            border-radius: 5px;
+            width: 300px;
+            margin-bottom: 30px;
+        }
+
+        
+    }   
+    .title-Album {
+        font-size: 2.2rem ;
+        font-weight: 600 ;
+        text-align: center ;
+        width: 300px ;
+
+    }
+
+    .album-song {
+        margin-top: 40px;
+        .album-title-song {
+            display: flex;
+            justify-content: space-between;
+           
+            .album-fist{
+                margin-left: 15px;
+            }
+            .album-end{
+                margin-right: 18px;
+            }
+        }
+        .album-title-song > span{
+            font-weight: 600;
+        }
+        width: 100%;
+       
+    }
+
+}

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
-import {getALLAlbum, createNewAlbum, deleteAlbum, editAlbum } from '../../../services/albumSevice';
+import {getALLAlbum, createNewAlbum, deleteAlbum, editAlbum , createAddTrack } from '../../../services/albumSevice';
 import {getALLTrack} from '../../../services/TrackSevice';
 import {emitter} from '../../../utils/emitter'
  import ModalCreateAlbum from './modalcreatealbum'
  import ModalEditAlbum from './modalEditAlbum'
+ import ModalAddTrack from './modalAddTrack'
 import { connect } from 'react-redux'
 import './AlbumManage.scss'
 
@@ -15,7 +16,7 @@ class AlbumManage extends Component {
         super(props);
         this.state = {
             ArrayAlbum : [],
-            ArrayTrack : [],
+            Arraytrack : [],
             isOpenModalAlbum : false, 
             isOpenModalEditAlbum : false, 
             isOpenModalAddTrack : false,
@@ -27,10 +28,14 @@ class AlbumManage extends Component {
     }
 
     async componentDidMount() {
+
+        await this.getALLTrack();
        
         await this.getALLAlbum();
 
     }
+
+
 
     getALLAlbum = async() =>{
         let response = await getALLAlbum('ALL')
@@ -45,20 +50,22 @@ class AlbumManage extends Component {
         }
     }
 
-
+    
     getALLTrack = async() =>{
         let response = await getALLTrack('ALL')
         
         if(response && response.errCode === 0) {
-            let tracks =response.album.reverse();
+            let tracks =response.track.reverse();
             console.log('>>>> check data Alibum',tracks)
             this.setState ({ 
-                ArrayTrack : tracks
+                Arraytrack : tracks
              })
              
         }
     }
 
+
+  
     handleAddNewAlbum = () =>{
 
         this.setState({
@@ -101,6 +108,28 @@ class AlbumManage extends Component {
                emitter.emit('EVENT_CLEAR_MODAL_DATA')
 
                 toast.success('❤️ create album successfully ❤️')
+            }
+            
+        
+        } catch (error) {
+            console.log(error);
+        }
+      
+    }
+
+
+    createAddTrack = async (data) =>{
+        try {
+           let response = await createAddTrack(data);
+           if(response && response.errCode !== 0){
+               alert(response.errMessage);
+           }else {   
+               this.setState({
+                isOpenModalAddTrack : false
+               })
+               emitter.emit('EVENT_CLEAR_MODAL_DATA')
+
+                toast.success('❤️ add track for album successfully ❤️')
             }
             
         
@@ -170,7 +199,7 @@ class AlbumManage extends Component {
     handleAddTrackForlbum = () =>{
 
         this.setState({
-            isOpenModalAlbum :true,
+            isOpenModalAddTrack :true,
         })
 
     }
@@ -186,11 +215,21 @@ class AlbumManage extends Component {
         let ArrayAlbum = this.state.ArrayAlbum;
         return (
             <div className="album-container">
+
+                <ModalAddTrack
+                    isOpen={this.state.isOpenModalAddTrack}
+                    toggleFromParent = {this.toggleAddTrackModal}
+                    createAddTrack = {this.createAddTrack}
+                    getALLAlbum = {this.state.ArrayAlbum}
+                    getAlltrack = {this.state.Arraytrack}
+                
+                />
                 
                 <ModalCreateAlbum
-                isOpen={this.state.isOpenModalAlbum}
-                toggleFromParent = {this.toggleAlbumModal}
-                createNewAlbum = {this.createNewAlbum}
+                    
+                    isOpen={this.state.isOpenModalAlbum}
+                    toggleFromParent = {this.toggleAlbumModal}
+                    createNewAlbum = {this.createNewAlbum}
                 
                 />
                 {this.state.isOpenModalEditAlbum &&

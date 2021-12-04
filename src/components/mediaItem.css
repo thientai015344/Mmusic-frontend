@@ -81,6 +81,7 @@ color : rgba(97, 97, 97, 1)
     height: 100%;
     line-height: 48.93px;
     font-weight: 200;
+    text-align: center;
     cursor: default;
     z-index: 2;
 }

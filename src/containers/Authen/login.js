@@ -7,8 +7,6 @@ import * as actions from "../../store/actions";
 
 import './login.css';
 import { handleLoginApi } from '../../services/USERService'
-import { FormattedMessage } from 'react-intl';
-import { userLoginSuccess } from '../../store/actions';
 
 
 
@@ -46,6 +44,7 @@ class Login extends Component {
         })
         try {
            let data = await handleLoginApi(this.state.username, this.state.password)
+           console.log('datalogin', data)
            if(data && data.errCode !==0){
                this.setState({ errMessage: data.message})
            }

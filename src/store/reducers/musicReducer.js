@@ -7,7 +7,6 @@ const initState = {
 }
 
 const appReducer = (state = initState, action) => {
-    console.log('trackstate',state)
     switch (action.type) {
         case actionTypes.FETCH_TRACK_SUCCESS:
 

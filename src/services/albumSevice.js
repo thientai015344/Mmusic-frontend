@@ -7,9 +7,11 @@ const getALLAlbum = (inputId) => {
     return axios.get(`/api/get-all-album?id=${inputId}`)
 }
 
+const getDetailAlbum = (inputId) => {
+    return axios.get(`/api/get-detail-album-by-id?id=${inputId}`)
+}
+
 const createNewAlbum = (data) => {
-    console.log(data)
-    console.log('check data from service', data)
     return axios.post('/api/create-new-album', data);
 }
 
@@ -27,12 +29,18 @@ const editAlbum = (data) => {
 }
 
 
+const createAddTrack = (data) => {
+    return axios.post('/api/create-new-track-for-album', data);
+}
+
+
 export {
     getALLAlbum, 
     createNewAlbum,
     deleteAlbum,
     editAlbum,
-    
+    createAddTrack,
+    getDetailAlbum,
 
 
 
