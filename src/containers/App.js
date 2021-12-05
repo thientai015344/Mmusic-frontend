@@ -19,6 +19,8 @@ import  CustomScrollbars from '../components/CustomScrollbars';
 import PlayerMusic from '../components/PlayerMusic';
 import PageAlbum from './pageAlbum/PageAlbum';
 import PageDetailAlbum from './pageAlbum/pageDetailAlbum';
+import PageSinger from './PageSinger/pageSinger'
+import Profilesinger from '../components/profilesinger';
 
 class App extends Component {
 
@@ -56,8 +58,12 @@ class App extends Component {
                                          <Route  path={path.HOMEPAGE} component={(HomePage)} /> 
                                          <Route path={path.SONG} component={(PageSong)} />
                                          <Route exact path={path.ALBUM} component={(PageAlbum)} />
-                                         <Route  path="/album/:id" component={(PageDetailAlbum)} />
+                                         <Route  path={path.ALBUMDETAIL} component={(PageDetailAlbum)} />
 
+                                         <Route exact path={path.SINGER} component={(PageSinger)} />  
+                                         <Route  path={path.SINGERDETAIL} component={(Profilesinger)} />  
+
+                                         
                                          <Route path={path.MY_MUSIC} component={(MyProFile)} />
                                        
                                        

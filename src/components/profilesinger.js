@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../css/profilesinger.css';
+import './profilesinger.scss';
 
 class Profilesinger extends Component {
     render() {
@@ -21,7 +21,7 @@ class Profilesinger extends Component {
                         </p>
                     </div>
                     <div className="profile-img">
-                    <img src="./img/avata/hoangton.jpg" alt="" className="img-avata" />
+                    <img src="../img/avata/hoangton.jpg" alt="" className="img-avata" />
                     </div>
                 </div>
 

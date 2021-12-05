@@ -8,7 +8,9 @@ export const path = {
     BXH: '/BXH',
     COLLECTION: '/collection',
     ALBUM: '/album',
-    SINGER: '/Singer',
+    ALBUMDETAIL :'/album/:id',
+    SINGER: '/singer',
+    SINGERDETAIL: '/singer/:id',
     MY_MUSIC: '/myfrofile'
 };
 

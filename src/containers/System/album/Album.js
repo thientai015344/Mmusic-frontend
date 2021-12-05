@@ -40,7 +40,7 @@ class AlbumManage extends Component {
     getALLAlbum = async() =>{
         let response = await getALLAlbum('ALL')
         
-        if(response && response.errCode === 0) {
+        if(response && response.errCode === 0) {       
             let albums =response.album.reverse();
             console.log('>>>> check data Alibum',albums)
             this.setState ({ 

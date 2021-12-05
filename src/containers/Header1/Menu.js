@@ -54,7 +54,7 @@ class Menu extends Component {
                                 </li>
                                 {/* artist */} 
                                 <li activeclassname="active" className="navbar-li-artist">
-                                    <NavLink className="nav-listMenu--artist" to="/nghe-si">
+                                    <NavLink className="nav-listMenu--artist" to="/singer">
                                     Nghệ sĩ                 
                                     </NavLink>   
                                 </li>  

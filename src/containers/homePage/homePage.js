@@ -1,36 +1,146 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Homepage.scss'
+import Title from '../../components/Title';
+import PlaylistItem from '../../components/playlistItem';
+import {getALLAlbum} from '../../services/albumSevice'
 import SliderContent from '../slider/SliderContent'
-import Containert from '../../components/Container'
 import SliderSinger from '../slider/SliderSinger';
+import MediaItem from '../../components/mediaItem';
+import {getALLTrack} from '../../services/TrackSevice';
+
+
 
 
 class HomePage extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            ArrayAlbum : [],
+            ArrayTrack: [],
+        }
+    }
+
+    
+    async componentDidMount() {
+       
+        await this.getALLAlbum();
+        await this.getALLTrack();
+
+    }
+
+    getALLAlbum = async() =>{
+        let response = await getALLAlbum('ALL')
+        if(response && response.errCode === 0) {
+            let albums =response.album.reverse();
+            this.setState ({ 
+                ArrayAlbum : albums
+                 
+             })
+             
+        }
+    }
+
+    getALLTrack = async() =>{
+        let response = await getALLTrack('ALL')
+        if(response && response.errCode === 0) {
+            let tracks =response.track.reverse();
+            this.setState ({ 
+                ArrayTrack : tracks
+                 
+             })
+             
+        }
+    }
 
     render() {
-        
+
+        let ArrayTrack = this.state.ArrayTrack;
+
+        let trackAray = this.state.ArrayTrack; 
+        console.log('singerfortracksss',trackAray)
+        const albumlist = trackAray && trackAray.map(track =>{
+          let imageBase64 = '';
+          if(track.imgsong){
+          
+              imageBase64 = new Buffer(track.imgsong, 'base64').toString('binary');
+          }
+        return {name: track.namesong, cover: imageBase64, musicSrc : track.filetrack, singer : track.singer.singername}
+        })
+
+
+        let albumAray = this.state.ArrayAlbum; 
+        const audioLists = albumAray && albumAray.map(album =>{
+          let imageBase64 = '';
+          if(album.imgAlbum){
+          
+              imageBase64 = new Buffer(album.imgAlbum, 'base64').toString('binary');
+          }
+        return {name: album.nameAlbum, cover:imageBase64, id: album.id }
+        })
     
 
         return (
-           <div className="home-page Wrap">
+            <div className="homeallPage">
+           <div className="home-page ">
                 <SliderContent />
-                <Containert title="51658416532" />
-                <Containert />
-                <Containert />
-                <Containert />
-                <Containert />
-                <Containert />
-                <Containert />
+                <Title  title ="ALBUM MỚI NHẤT"/>
+
+                <div className="home-album">
+                    {albumlist && albumlist.slice(0, 10).map((item, index) => {
+
+                        return(
+                                
+                                <PlaylistItem   
+
+                                    key={index}
+                                    id ={item.id}
+                                    name={item.name} 
+                                    img={item.cover}
+                                    />
+
+                        )
+
+                        })
+                    }
+                </div>
+
                 <SliderSinger />
-                <Containert />
-                <Containert />
-                <Containert />
-                <Containert />
+               
+                <Title title='Bài Hát Mới Nhất' />
+               <div className="home-song">
 
+                {ArrayTrack && ArrayTrack.slice(0, 10).map((item, index) => {
 
+                    let imageBase64 = '';
+                    if(item.imgsong){
+                    
+                        imageBase64 = new Buffer(item.imgsong, 'base64').toString('binary');
+                    }
+
+                        return(
+
+                            <MediaItem 
+                            gettrackkk = {() => this.getTrackforPlayer()}
+                            key={index}
+                            namesong={item.namesong} 
+                            imgsong = {imageBase64}
+                            duration={item.duration}
+                            singername={item.singer.singername} 
+                            getarray ={audioLists}
+                                />
+        
+                        )
+
+                    })
+                }
+
+               </div>
 
            </div>
+              {/* //  <Footer /> */}
+
+                </div>
         );
     }
 

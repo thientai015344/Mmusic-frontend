@@ -43,6 +43,8 @@ class PageAlbum extends Component {
 
 
     render() {
+
+        
         let albumAray = this.state.ArrayAlbum; 
         const audioLists = albumAray && albumAray.map(album =>{
           let imageBase64 = '';
@@ -75,6 +77,7 @@ class PageAlbum extends Component {
                                 id ={item.id}
                                 name={item.name} 
                                 img={item.cover}
+                               
                                
                                 //getarray ={audioLists}
                                 />

@@ -1,5 +1,6 @@
 import React  from 'react';
 import {emitter} from '../../../utils/emitter'
+import { toast } from 'react-toastify';
 import 'react-image-lightbox/style.css';
 import Select from 'react-select';
 import {createAddTrack} from '../../../services/albumSevice';
@@ -47,19 +48,18 @@ listenToEmitter () {
                 result.push(object);
 
             })
+            toast.success('❤️ create addTrack  successfully ❤️')
+                    let res  = await createAddTrack({
+                        albumHasTrack : result
+                    })
+                    this.props.createNewAlbum(this.state.isOpen);
 
         } else{
-            alert('khong co bai hat nao !')
-        }
-         
-  
            
-        
-        console.log('check result', result)
-      let res  = await createAddTrack({
-            albumHasTrack : result
-          })
-      console.log('res ', res)
+            toast.error(' khong co bai hat nao')
+
+        }
+  
     }
 
 
@@ -171,7 +171,7 @@ listenToEmitter () {
 
                     </ModalBody>
                 <ModalFooter>
-                <Button color="primary" className="px-3" onClick={() =>{this.handleAddTrack()}}>Create</Button>
+                <Button color="primary" className="px-3" onClick={() =>{this.toggle()}}  onClick={() =>{this.handleAddTrack()}}>Create</Button>
                 <Button color="secondary" className="px-3" onClick={() =>{this.toggle()}}>Cancel</Button>
                 </ModalFooter>
             </Modal>
