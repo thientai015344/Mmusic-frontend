@@ -7,12 +7,22 @@ const getALLTrack = (inputId) => {
     return axios.get(`/api/get-all-track?id=${inputId}`)
 }
 
+const getALLComment = (inputId) => {
+    return axios.get(`/api/get-comments-track?id=${inputId}`)
+}
+
 const createNewTrack = (data) => {
     console.log(data)
     console.log('check data from service', data)
     return axios.post('/api/create-new-track', data);
 }
 
+const createNewCommentTrack = (data) => {
+    console.log(data)
+    console.log('check data from service', data)
+    return axios.post('/api/create-new-comment', data);
+
+}
 const deleteTrack = (TrackId) => {
     return axios.delete('/api/delete-track',{
         // headers: {Authorization: authorizationToken},
@@ -37,8 +47,9 @@ export {
     deleteTrack,
     editTrack,
     getALLsINGERForTrack,
+    createNewCommentTrack,
+    getALLComment,
     
-
-
-
 }
+
+

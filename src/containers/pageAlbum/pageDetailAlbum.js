@@ -106,7 +106,7 @@ class PageDetailAlbum extends Component {
         
             imageBase64trac = new Buffer(track.albumtracks.track.imgsong, 'base64').toString('binary');
         }
-      return {nametrack : track.albumtracks.track.namesong, imgtrack : imageBase64trac, filetrack : track.albumtracks.track.filetrack, duration : track.albumtracks.track.duration, singerName : track.albumtracks.track.singer.singername, 
+      return {id : track.albumtracks.track.id ,nametrack : track.albumtracks.track.namesong ,idsinger : track.albumtracks.track.singerId, imgtrack : imageBase64trac, filetrack : track.albumtracks.track.filetrack, duration : track.albumtracks.track.duration, singerName : track.albumtracks.track.singer.singername,  
     
         
     }
@@ -150,8 +150,10 @@ console.log('audiolists', audioLists)
                                                 <MediaItem 
                                                         key={index}
                                                     imgsong={item.imgtrack}
+                                                    id ={item.id}
+                                                    idsinger ={item.idsinger}
                                                     namesong={item.nametrack}
-                                                    singerName={item.singerName}
+                                                    singername={item.singerName}
                                                     duration={item.duration}
                                                             />
                                    

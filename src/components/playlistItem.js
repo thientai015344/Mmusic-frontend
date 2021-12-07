@@ -58,7 +58,7 @@ import { withRouter } from 'react-router'
  
 
     render() {
-        let id = this.props.id    
+          
         return (
    
             <>
@@ -69,7 +69,7 @@ import { withRouter } from 'react-router'
                             <div  className="music-picture--link">
                                 <img className="music-picture--img" src={this.props.img} alt=""/>
                             </div> 
-                            <NavLink to ={`/album/${id}`}  className="music-overlay">
+                            <NavLink to ={`/album/${this.props.id}`}  className="music-overlay">
                                 <button className="icon" onClick={() => this.changeiconButton()} >
                                     {this.displaycheck()}
                                 </button>
@@ -77,7 +77,7 @@ import { withRouter } from 'react-router'
                     </div> 
                     
                     <div className="contet-playlist">
-                        <NavLink to ={`/album/${id}`} className="music_name">
+                        <NavLink to ={`/album/${this.props.id }`} className="music_name">
                           {this.props.name}
                         </NavLink>
                         

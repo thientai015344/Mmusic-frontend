@@ -1,0 +1,33 @@
+.profile-background{
+    
+    max-width: 1170px;
+    margin: 60px auto;
+    .profile-top {
+        display: flex;
+        border-radius: 5px;
+        background-color: #e8e4e4;
+        .profile-content{
+            margin: 30px 40px;
+            .profile-Name{
+                width: 100%;
+                margin-top: 20px;
+                font-size:  3.6rem ;
+                font-weight: 600;
+            }
+            .profile-story{
+                font-size: 1rem;
+                margin-top:40px
+            }
+        }
+        .profile-img{
+            border-radius: 50%;
+                padding: 30px 0;
+            .img-avata{
+                width: 90%;
+                border-radius: 50%;
+                box-shadow: 1px 4px 8px 11px #beb8b8;
+            }
+        }
+    }
+
+}

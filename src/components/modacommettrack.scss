@@ -1,0 +1,106 @@
+.modal-content{
+    border-radius: 10px !important;
+    width: 650px !important;
+    height:652px !important;
+}
+
+.modal-header .close {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 3rem !important;
+    color: #000 !important;
+    &:hover {
+        color: #04AA6D !important;
+    }
+}
+
+.modal .modal-dialog .modal-content .modal-header .modal-title {
+    font-size: 22px;
+}
+
+.modal .modal-dialog .modal-content .modal-header {
+    background-color: #fff !important;
+    border-radius: 10px !important;
+    margin: 20px 0 0 0 !important;
+    color: #000 !important;
+}
+.modal-comment{
+    background-color: #fff;
+    margin-top: 20px;
+    .modal-input--comment{
+        margin-bottom: 20px;
+        .modal-cratenewcomment {
+            display: flex;
+            align-items: center;
+            .modal-imgcreate{
+              .img-newcommet{
+                  width: 50px;
+                  border-radius: 50%;
+              }  
+            }
+            .form-input{
+                border-radius: 24px;
+                width: 100%;
+                background-color: #ccc;
+                padding-left: 10px;
+                margin: 0 20px;
+                .form-control-input{
+                    width: 100%;
+                    margin-left: 10px;
+                    height: 35px;
+                    border: none;
+                    outline: none;
+                    background-color: #ccc;
+                    border-radius: 24px;
+                }
+
+            }
+            .send-comment{
+
+                font-size: 1.4rem !important;
+                color: #888585;
+                background-color: transparent !important;
+                border: none;
+                &:focus {
+                    border: none;
+                }
+
+                &:hover {
+                    color: #04AA6D;
+                }
+            }
+        }
+    }
+    .modal-getCommemt{
+        .modal-count-comment{
+            font-size:1.2rem;
+            margin-left: 10px;
+        }
+    }
+    .modal-all-itemCommet{
+
+        overflow-y: auto;
+        max-height: calc(100vh - 380px);
+       
+        .modal-item--comment{
+            display: flex;
+            margin: 30px 0;
+            align-items:center;
+            .modal-img-comment{
+                margin-right: 30px;
+                .img-item-comment{
+                    width: 50px;
+                    border-radius: 50%;
+                }
+            }
+            .modal-content--commet{
+                .modal-nameuer-item{
+                    font-weight: 600;
+                    margin : 0 5px  5px;
+                }
+            }
+        }
+    }
+
+}

@@ -7,6 +7,11 @@ const getALLSinger = (inputId) => {
     return axios.get(`/api/get-all-singer?id=${inputId}`)
 }
 
+const getDetailSinger = (inputId) => {
+    return axios.get(`/api/get-detail-singer?id=${inputId}`)
+}
+
+
 const createNewSinger = (data) => {
     console.log(data)
     console.log('check data from service', data)
@@ -39,6 +44,7 @@ export {
     createNewSinger,
     deleteSinger,
     editSinger,
+    getDetailSinger,
     
 
 

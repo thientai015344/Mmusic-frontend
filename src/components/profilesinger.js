@@ -1,35 +1,134 @@
 import React, { Component } from 'react';
 import './profilesinger.scss';
-
+import Title from './Title';
+import {getALLSinger, getDetailSinger} from '../services/singerSevice';
+import MediaItem from './mediaItem'
 class Profilesinger extends Component {
+
+    constructor(props) {
+
+        super(props);
+
+        this.state = {
+            ArraySinger : {},
+            ArraytrackSinger : []
+        }
+    }
+
+    async componentDidMount() {
+       
+        await this.getALLSinger();
+
+
+        await this.getDetailSinger();
+       
+
+    }
+
+    getALLSinger = async() =>{
+        let fff = this.props.match.params.id
+        let response = await getALLSinger(fff)
+        if(response && response.errCode === 0) {
+            let singers =response.singer;
+            this.setState ({ 
+                ArraySinger : singers
+                 
+             })
+             
+        }
+    }
+
+    getDetailSinger = async() =>{
+        let fff = this.props.match.params.id
+        let response = await getDetailSinger(fff)
+        if(response && response.errCode === 0) {
+            let tracs =response.track.reverse();
+            this.setState ({ 
+                ArraytrackSinger : tracs
+                 
+             })
+             
+        }
+    }
+
+
+
+
     render() {
+        let singers = this.state.ArraySinger
+            let imageBase649 = '';
+                if(singers.avatasinger){
+                
+                    imageBase649 = new Buffer(singers.avatasinger, 'base64').toString('binary');
+                }
+        
+        let tracs = this.state.ArraytrackSinger    
+
+        const audioLists = tracs && tracs.map(track =>{
+       
+            let imageBase64trac = '';
+            if(track.tracks.imgsong){
+            
+                imageBase64trac = new Buffer(track.tracks.imgsong, 'base64').toString('binary');
+            }
+        return { id : track.tracks.id, idsinger:track.tracks.singerId, nametrack : track.tracks.namesong, imgtrack : imageBase64trac, duration : track.tracks.duration, singerName : track.singername}
+
+        })
+        
+     
+    
+    
         return (
             <>
-            <div className="profile-background1">
-                <div className="profile-all Wrap">
-                    <div className="profile-content">
-                        <h1 className="profile-Name"  >Hoàng Tôn</h1>
+            <div className="profile-background ">
+                <div className="profile-top">
+                    <div className="profile-content col-7" >
+                        <h1 className="profile-Name"  >{singers.singername}</h1>
                         <p className="profile-story">
-                             Hoàng Tôn sinh ra trong gia đình nghệ thuật, mẹ là giảng viên thanh nhạc còn bố là nhạc công guitar.
-                            Năm 2013, anh tham gia The Voice, giành giải Á Quân và gây chú ý với giọng hát tốt cùng khả năng
-                             tự sáng tác cả hai ca khúc biểu diễn trong chương trình là "Illusion" và "Dành Cho Em".
-                            Sau cuộc thi, sự nghiệp ca sĩ của Hoàng Tôn gặp nhiều thuận lợi, anh có những bản hit được
-                             yêu thích như "Em Không Quây Về" (2014), "Yêu Em Rất Nhiều" (2017) hay "Please" (2018)... 
-                             Ngoài ca sĩ solo, anh cũng là hát chính của nhóm nhạc 4 người có tên FBBoiz.
-                            Với vai trò ca sĩ, anh là tác giả của nhiều hit nổi tiếng như "Nỗi Nhớ Đầy Vơi"
-                             của Noo Phước Thịnh và Hồ Ngọc Hà, "Em Không Cần" của Thủy Tiên, "Tìm" của Min...
+                             {singers.description}
                         </p>
                     </div>
-                    <div className="profile-img">
-                    <img src="../img/avata/hoangton.jpg" alt="" className="img-avata" />
+
+                    <div className="profile-img col-4">
+
+                        <img src={imageBase649} alt="" className="img-avata" />
+
                     </div>
                 </div>
 
-            </div>
-            <div className="profile-background2">
-                
+                <div className="profile-singer-song" >
+                    <Title title="Bài Hát Nỗi bật" />
 
-            </div>
+                    {audioLists && audioLists.map((item, index) => {
+
+
+                            return(
+
+                            
+
+                                    <MediaItem 
+                                    //gettrackkk = {() => this.getTrackforPlayer()}
+                                    key={index}
+                                    namesong={item.nametrack} 
+                                    imgsong = {item.imgtrack}
+                                    duration={item.duration}
+                                    idsinger={item.idsinger}
+                                    id ={item.id}
+                                    singername={item.singerName} 
+                                    getarray ={audioLists}
+                                        />
+                            
+                                )
+
+                        })
+                    }
+                </div>
+
+
+
+    </div>
+
+           
 
                 
             </>

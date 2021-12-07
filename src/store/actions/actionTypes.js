@@ -26,6 +26,11 @@ const actionTypes = Object.freeze({
     
     FETCH_ALL_TRACK : 'FETCH_ALL_TRACK',
 
+    FETCH_ID_SUCCESS : 'FETCH_ID_SUCCESS',
+    
+    FETCH_ID_TRACK : 'FETCH_ID_TRACK',
+
+
     
 
 })

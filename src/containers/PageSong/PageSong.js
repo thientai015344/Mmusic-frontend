@@ -67,10 +67,10 @@ class PageSong extends Component {
           
               imageBase64 = new Buffer(track.imgsong, 'base64').toString('binary');
           }
-        return {name: track.namesong, cover: imageBase64, musicSrc : track.filetrack, singer : track.singer.singername}
+        return { id: track.id, idsinger:track.singerId, name: track.namesong, cover: imageBase64, musicSrc : track.filetrack, singer : track.singer.singername}
         })
 
-        
+        console.log('audioLists',audioLists)
 
 
         return (
@@ -104,6 +104,8 @@ class PageSong extends Component {
                                           namesong={item.namesong} 
                                           imgsong = {imageBase64}
                                           duration={item.duration}
+                                          idsinger={item.singerId}
+                                          id={item.id}
                                           singername={item.singer.singername} 
                                           getarray ={audioLists}
                                             />

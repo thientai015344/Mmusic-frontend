@@ -57,26 +57,28 @@ class HomePage extends Component {
 
         let ArrayTrack = this.state.ArrayTrack;
 
-        let trackAray = this.state.ArrayTrack; 
-        console.log('singerfortracksss',trackAray)
-        const albumlist = trackAray && trackAray.map(track =>{
-          let imageBase64 = '';
-          if(track.imgsong){
+        // let trackAray = this.state.ArrayTrack; 
+        
+        
+        // const albumlist = trackAray && trackAray.map(track =>{
+            
+        //   let imageBase64 = '';
+        //   if(track.imgsong){
           
-              imageBase64 = new Buffer(track.imgsong, 'base64').toString('binary');
-          }
-        return {name: track.namesong, cover: imageBase64, musicSrc : track.filetrack, singer : track.singer.singername}
-        })
+        //       imageBase64 = new Buffer(track.imgsong, 'base64').toString('binary');
+        //   }
+        // return {name: track.namesong, idsinger:track.singerId , cover: imageBase64, musicSrc : track.filetrack, singer : track.singer.singername}
+        // })
 
-
+        
         let albumAray = this.state.ArrayAlbum; 
-        const audioLists = albumAray && albumAray.map(album =>{
+        const albumLists = albumAray && albumAray.map(album =>{
           let imageBase64 = '';
           if(album.imgAlbum){
           
               imageBase64 = new Buffer(album.imgAlbum, 'base64').toString('binary');
           }
-        return {name: album.nameAlbum, cover:imageBase64, id: album.id }
+        return { name: album.nameAlbum, cover:imageBase64, id: album.id }
         })
     
 
@@ -87,7 +89,9 @@ class HomePage extends Component {
                 <Title  title ="ALBUM MỚI NHẤT"/>
 
                 <div className="home-album">
-                    {albumlist && albumlist.slice(0, 10).map((item, index) => {
+                    {albumLists && albumLists.slice(0, 10).map((item, index) => {
+
+                        
 
                         return(
                                 
@@ -117,17 +121,19 @@ class HomePage extends Component {
                     
                         imageBase64 = new Buffer(item.imgsong, 'base64').toString('binary');
                     }
-
+            
                         return(
-
+                                
                             <MediaItem 
                             gettrackkk = {() => this.getTrackforPlayer()}
                             key={index}
+                            id={item.id}
                             namesong={item.namesong} 
                             imgsong = {imageBase64}
                             duration={item.duration}
+                            idsinger={item.singerId}
                             singername={item.singer.singername} 
-                            getarray ={audioLists}
+                           
                                 />
         
                         )

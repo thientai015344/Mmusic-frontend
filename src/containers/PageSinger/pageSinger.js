@@ -108,7 +108,7 @@ class PageSinger extends Component {
 
                     {ArraySinger && ArraySinger.map((item, index) => {
 
-                            console.log('index', index)
+                           
                                 let imageBase64 = '';
                                             if(item.avatasinger){
                                             
@@ -121,6 +121,7 @@ class PageSinger extends Component {
                                             
                                             key={index}
                                             singername = {item.singername}
+                                            id={item.id}
                                             img ={imageBase64}
 
                                             />
