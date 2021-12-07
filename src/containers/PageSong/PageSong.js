@@ -40,7 +40,7 @@ class PageSong extends Component {
     getALLTrack = async() =>{
         let response = await getALLTrack('ALL')
         if(response && response.errCode === 0) {
-            let tracks =response.track.reverse();
+            let tracks =response.track;
             this.setState ({ 
                 ArrayTrack : tracks
                  
@@ -60,17 +60,17 @@ class PageSong extends Component {
         let ArrayTrack = this.state.ArrayTrack;
 
         let trackAray = this.state.ArrayTrack; 
-        console.log('singerfortracksss',trackAray)
+       
         const audioLists = trackAray && trackAray.map(track =>{
           let imageBase64 = '';
           if(track.imgsong){
           
               imageBase64 = new Buffer(track.imgsong, 'base64').toString('binary');
           }
-        return { id: track.id, idsinger:track.singerId, name: track.namesong, cover: imageBase64, musicSrc : track.filetrack, singer : track.singer.singername}
+        return { name: track.namesong, cover: imageBase64, musicSrc : track.filetrack, singer : track.singer.singername}
         })
 
-        console.log('audioLists',audioLists)
+     
 
 
         return (
@@ -83,7 +83,7 @@ class PageSong extends Component {
 
                 {ArrayTrack && ArrayTrack.map((item, index) => {
 
-                            console.log('singer',item.singer.singername)
+                         
                             let imageBase64 = '';
                                         if(item.imgsong){
                                         

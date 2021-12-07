@@ -186,7 +186,7 @@ getALLsINGERForTrack = async() =>{
 
     render() {
         let SingerForTracks = this.state.ArraySingerForTrack; 
-        console.log('singerfortracksss',SingerForTracks)
+    
         const options = SingerForTracks && SingerForTracks.map(singer =>{
             return {label: singer.singername, value: singer.id}
         })

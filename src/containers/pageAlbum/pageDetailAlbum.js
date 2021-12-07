@@ -56,7 +56,7 @@ class PageDetailAlbum extends Component {
         let response = await getALLAlbum(fff)        
         if(response && response.errCode === 0) {       
             let albums =response.album;
-            console.log('>>>> check data Alibum',albums)
+           
             this.setState ({ 
             Album : albums
              })
@@ -98,7 +98,7 @@ class PageDetailAlbum extends Component {
 
 
       let array = this.state.ArrayDetail; 
-      console.log('singerfortracksss',array)
+  
       const audioLists = array && array.map(track =>{
        
         let imageBase64trac = '';
@@ -106,7 +106,7 @@ class PageDetailAlbum extends Component {
         
             imageBase64trac = new Buffer(track.albumtracks.track.imgsong, 'base64').toString('binary');
         }
-      return {id : track.albumtracks.track.id ,nametrack : track.albumtracks.track.namesong ,idsinger : track.albumtracks.track.singerId, imgtrack : imageBase64trac, filetrack : track.albumtracks.track.filetrack, duration : track.albumtracks.track.duration, singerName : track.albumtracks.track.singer.singername,  
+      return {id : track.albumtracks.track.id ,name : track.albumtracks.track.namesong ,idsinger : track.albumtracks.track.singerId, cover : imageBase64trac, musicSrc : track.albumtracks.track.filetrack, duration : track.albumtracks.track.duration, singer : track.albumtracks.track.singer.singername,  
     
         
     }
@@ -115,7 +115,7 @@ class PageDetailAlbum extends Component {
 
 
 
-console.log('audiolists', audioLists)
+
 
     
         return (
@@ -147,14 +147,17 @@ console.log('audiolists', audioLists)
                                     {audioLists && audioLists.map((item, index) => {
 
                                         return (
-                                                <MediaItem 
+                                                <MediaItem
+                                                tem 
                                                         key={index}
-                                                    imgsong={item.imgtrack}
+                                                    imgsong={item.cover}
                                                     id ={item.id}
                                                     idsinger ={item.idsinger}
-                                                    namesong={item.nametrack}
-                                                    singername={item.singerName}
+                                                    namesong={item.name}
+                                                    singername={item.singer}
                                                     duration={item.duration}
+                                                    getarray ={audioLists}
+
                                                             />
                                    
                                                                                             

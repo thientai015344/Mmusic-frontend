@@ -9,12 +9,12 @@ import { path } from '../utils'
 import HomePage from './homePage/homePage';
 import PageSong from './PageSong/PageSong';
 import  MyProFile from './myFroFile/MyProFile'
-import Login from './Authen/login';
+import BackgroundLogin from './Authen/backgroundLogin';
 import Menu from './Header1/Menu';
 import Footer from './Footer/Footer';
 import System from '../routes/System';
 import Home from '../routes/Home';
-//
+import Register from '../containers/Authen/regiter'
 import  CustomScrollbars from '../components/CustomScrollbars';
 import PlayerMusic from '../components/PlayerMusic';
 import PageAlbum from './pageAlbum/PageAlbum';
@@ -65,9 +65,10 @@ class App extends Component {
 
                                          
                                          <Route path={path.MY_MUSIC} component={(MyProFile)} />
+                                         <Route path={path.REGISTER} component={(Register)} />
                                        
                                        
-                                        <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
+                                        <Route path={path.LOGIN} component={userIsNotAuthenticated(BackgroundLogin)} />
                                         <Route path={path.SYSTEM} component={userIsAuthenticated(System)} /> 
                                     </Switch>
                                 </CustomScrollbars>

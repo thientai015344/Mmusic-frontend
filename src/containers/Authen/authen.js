@@ -35,10 +35,6 @@ handleGetphonNumber = (event) =>{
 hanleRegitter = (event) => {
     event.preventDefault()
     
-        console.log('check date state: ' + this.state)
-        console.log('all state',this.state)
-       
-   
 }
 
 

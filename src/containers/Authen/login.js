@@ -4,7 +4,7 @@ import { push } from "connected-react-router";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faFacebook, faGoogle, faApple} from '@fortawesome/free-brands-svg-icons'
 import * as actions from "../../store/actions";
-
+import { NavLink } from 'react-router-dom'
 import './login.css';
 import { handleLoginApi } from '../../services/USERService'
 
@@ -74,11 +74,7 @@ class Login extends Component {
  
         return (
             <>
-               <div className="modal1">
-                    <div className="container ">
-                        <div className="background--img"  >
-                        <img src="./img/background/backgroud.gif"alt=""  />
-                     
+              
                         <div className="form-login "> 
                             <div className="pading30">
                                 <div className="form-login-header">
@@ -149,17 +145,16 @@ class Login extends Component {
                                 <div className="form-logi-footer-title">
                                     Bạn chưa có tài Khoản 
                                 </div>
-                                <a href="/#" className="login">Đăng Ký ngay !</a>
+                                <NavLink to="/authen/register" className="login">Đăng Ký ngay !</NavLink>
                             </div>
                         </div>
 
 
                    
 
-                </div>
-            </div>
+               
                 
-                </div>
+               
             </>
            
         )

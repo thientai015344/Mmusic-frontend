@@ -1,0 +1,47 @@
+
+
+.form-previewImg {
+    height: 70px;
+    width: 170px;
+    
+    margin-left: 40px;
+    background: center center no-repeat;
+    background-size: contain;
+    cursor: pointer;
+}
+
+ .modal-header .close {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 2rem;
+    color: #fff;
+}
+
+
+.container-input-1{
+    display: flex;
+    .form-username{
+        width: 50%;
+    }
+    .form-password{
+        width: 50%;
+        margin-left: 10px;
+        
+    }
+
+
+}
+
+.container-input-2{
+    margin-top: 10px;
+
+    .form-phone{
+        margin-top: 10px;
+
+    }
+    .form-roleId{
+        display: none;
+    }
+      
+}

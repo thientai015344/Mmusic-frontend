@@ -136,7 +136,7 @@ p {
         height: 94%;
         right: 32px;
         margin: 17px 0px;
-        background-color: transparent;
+        background-color: #565656;
         border-radius: 5px;
         box-shadow: 0 4px 10px 0 rgb(249 249 249 / 40%);
     }
@@ -149,6 +149,7 @@ p {
     }
     
     .form-login_title {
+        color: #fff;
         width: 100%;
         line-height: 80px;
         font-size: 1.9rem;

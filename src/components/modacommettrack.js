@@ -3,12 +3,15 @@ import {emitter} from '../utils/emitter'
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
 import {getALLComment, createNewCommentTrack} from '../services/TrackSevice';
+import {getAllUSER} from "../services/USERService"
 import {  Modal, ModalHeader, ModalBody} from 'reactstrap';  
+import _ from 'lodash';
 import './modacommettrack.scss'
 class ModalComment extends React.Component {
 constructor(props) {
     super(props);
     this.state = {
+        ArrayUser : {},
         userId : '',
         contentcmt :'',
         trackId : '',
@@ -33,21 +36,28 @@ listenToEmitter () {
 
 async componentDidMount() {
   
+    let {userinfor} = this.props;
 
-    
-    let audioLists = this.props.userinfor;
-    
+    let user = userinfor;
+    if(user && !_.isEmpty(user)){
+        let id = user.id
+        this.setState({
+            userId : id
+        })
+        let response = await getAllUSER(id)
+        if(response && response.errCode === 0) {
+            this.setState ({ 
+                ArrayUser : response.user
+            })
+ 
+        }
 
-    this.setState({
-        userId : audioLists
-    })
+    }
    
     await this.getALLComment();
-
-    
-
-
 }
+
+
 
 getALLComment = async() =>{
     let idd =this.props.id
@@ -133,9 +143,15 @@ getALLComment = async() =>{
 
     render() {
 
-       
 
-       
+        let user = this.state.ArrayUser
+        let imageBase646 = '';
+        if(user.avata){
+        
+            imageBase646 = new Buffer(user.avata, 'base64').toString('binary');
+        }
+
+     
 
         let comment =this.state.arraycomment
        
@@ -163,7 +179,7 @@ getALLComment = async() =>{
                             <div className="modal-input--comment">
                                 <div className="modal-cratenewcomment">
                                     <div className="modal-imgcreate">
-                                    <img className="img-newcommet" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt=""  />
+                                    <img className="img-newcommet" src={imageBase646 == '' ? "https://bootdey.com/img/Content/avatar/avatar1.png" : imageBase646} alt=""  />
                                     </div>
                                     <div className="form-input">
 

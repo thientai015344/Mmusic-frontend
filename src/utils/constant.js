@@ -1,7 +1,8 @@
 export const path = {
     HOME : '/',
     HOMEPAGE: '/home',
-    LOGIN: '/login',
+    LOGIN: '/authen/login',
+    REGISTER: '/authen/register',
     LOG_OUT: '/logout',
     ADMIN: '/admin',
     SONG: '/bai-hat',
@@ -12,6 +13,7 @@ export const path = {
     SINGER: '/singer',
     SINGERDETAIL: '/singer/:id',
     MY_MUSIC: '/myfrofile'
+    
 };
 
 export const languages = {

@@ -44,6 +44,7 @@ class MediaItem extends Component {
     }
 
     changeiconButton =(track) =>{
+  
         this.props.getTrackfrompageSong(track)
 ///////////////////////////////////////////////////////
 
@@ -66,7 +67,6 @@ class MediaItem extends Component {
 
     comment = (idd) =>{
         this.props.getIdSong(idd)
-        console.log('commentwwwwwwwwwwww', idd)
         this.setState ({
             isOpenModalcommet : true,
             
@@ -132,7 +132,7 @@ class MediaItem extends Component {
                                     <button className="copylink" onClick={() => this.changeiconButton()} >
                                     <FontAwesomeIcon icon ={faLink } />
                                     </button>
-                                    <button className="dowload" onClick={() => this.comment(id)} >
+                                    <button className="comment-icon" onClick={() => this.comment(id)} >
                                     <FontAwesomeIcon icon ={faComment} />
                                     </button>
                                 </div>

@@ -56,20 +56,21 @@ class HomePage extends Component {
     render() {
 
         let ArrayTrack = this.state.ArrayTrack;
-
-        // let trackAray = this.state.ArrayTrack; 
-        
-        
-        // const albumlist = trackAray && trackAray.map(track =>{
-            
-        //   let imageBase64 = '';
-        //   if(track.imgsong){
+///////////////////////////////////////////////////////////////////////////
+        let trackAray = this.state.ArrayTrack; 
+       
+        const audioLists = trackAray && trackAray.slice(0, 10).map(track =>{
+          let imageBase64 = '';
+          if(track.imgsong){
           
-        //       imageBase64 = new Buffer(track.imgsong, 'base64').toString('binary');
-        //   }
-        // return {name: track.namesong, idsinger:track.singerId , cover: imageBase64, musicSrc : track.filetrack, singer : track.singer.singername}
-        // })
+              imageBase64 = new Buffer(track.imgsong, 'base64').toString('binary');
+          }
+        return { name: track.namesong, cover: imageBase64, musicSrc : track.filetrack, singer : track.singer.singername}
+        })
 
+       
+
+/////////////////////////////////////////////////////////////////////////////////
         
         let albumAray = this.state.ArrayAlbum; 
         const albumLists = albumAray && albumAray.map(album =>{
@@ -133,7 +134,7 @@ class HomePage extends Component {
                             duration={item.duration}
                             idsinger={item.singerId}
                             singername={item.singer.singername} 
-                           
+                            getarray ={audioLists}
                                 />
         
                         )
