@@ -7,30 +7,32 @@ const getALLPlaylist = (inputId) => {
     return axios.get(`/api/get-all-playlist?id=${inputId}`)
 }
 
-// const getALLComment = (inputId) => {
-//     return axios.get(`/api/get-comments-track?id=${inputId}`)
-// }
+const GetAlllibrytracks = (inputId) => {
+    return axios.get(`/api/get-all-librytracks?id=${inputId}`)
+}
 
-// const createNewTrack = (data) => {
-//     console.log(data)
-//     console.log('check data from service', data)
-//     return axios.post('/api/create-new-track', data);
-// }
+
+
+const createNewPlaylist = (data) => {
+    console.log(data)
+    console.log('check data from service', data)
+    return axios.post('/api/create-new-playlist', data);
+}
 
 // const createNewCommentTrack = (data) => {
 //     console.log(data)
 //     console.log('check data from service', data)
 //     return axios.post('/api/create-new-comment', data);
 
-// }
+//}
 // const deleteTrack = (TrackId) => {
 //     return axios.delete('/api/delete-track',{
 //         // headers: {Authorization: authorizationToken},
 //         data: {id: TrackId}
 
 
-//     });
-// }
+// //     });
+// // }
 
 // const editTrack = (data) => {
 //     console.log('dđaaaa',data)
@@ -43,7 +45,8 @@ const getALLPlaylist = (inputId) => {
 
 export {
     getALLPlaylist, 
-    // createNewTrack,
+    GetAlllibrytracks,
+    createNewPlaylist,
     // deleteTrack,
     // editTrack,
     // getALLsINGERForTrack,

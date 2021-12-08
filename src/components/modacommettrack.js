@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
 import {getALLComment, createNewCommentTrack} from '../services/TrackSevice';
 import {getAllUSER} from "../services/USERService"
-import {  Modal, ModalHeader, ModalBody} from 'reactstrap';  
+import {  Modal, ModalHeader, ModalBody, Alert} from 'reactstrap';  
 import _ from 'lodash';
 import './modacommettrack.scss'
 class ModalComment extends React.Component {
@@ -138,21 +138,42 @@ getALLComment = async() =>{
 
     }
 
+    keyPress = async(event) => {
+        console.log(event.charCode)
+        if (event.charCode == 13){
+          
+            let isValid = this.checkvalidateInput();
+             if(isValid === true){
+           await createNewCommentTrack({
+            trackId : this.state.trackId,
+            contentcmt : this.state.contentcmt,
+            userId : this.state.userId,
+
+            })
+
+            await this.getALLComment();
+
+        this.setState({
+
+            contentcmt :'',
+        })
+
+
+            
+       }
+        }
+
+    }
 
 
 
     render() {
-
-
         let user = this.state.ArrayUser
         let imageBase646 = '';
         if(user.avata){
         
             imageBase646 = new Buffer(user.avata, 'base64').toString('binary');
         }
-
-     
-
         let comment =this.state.arraycomment
        
          const commentlist = comment && comment.map(comment =>{
@@ -164,11 +185,7 @@ getALLComment = async() =>{
 
 
         return {username :comment.comments.user.username , name: comment.comments.user.interfaceName, cover:imageBase64, comment: comment.comments.contentcmt }
-        })
-    
-       
-        
-
+        })  
         return (
             <Modal isOpen={this.props.isOpen} toggle={() =>{this.toggle()}} className={'modal-useradm-container'}>
                 <ModalHeader toggle={() =>{this.toggle()}}>Bình Luận</ModalHeader>
@@ -188,7 +205,10 @@ getALLComment = async() =>{
                                             name="contentcmt"
                                             value={this.state.contentcmt}
                                             placeholder="Viết bình luận...." 
-                                            onChange={(event)=>{this.handleOnchangeInput(event, 'contentcmt')}} />
+                                            onChange={(event)=>{this.handleOnchangeInput(event, 'contentcmt')}}
+                                            onKeyPress={(e)=> this.keyPress(e)}
+                                            
+                                            />
 
                                     </div>
                                         

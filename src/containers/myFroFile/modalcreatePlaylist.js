@@ -1,9 +1,9 @@
 import React  from 'react';
-import {emitter} from '../../../utils/emitter'
+import {emitter} from '../../utils/emitter'
 import './modalalbum.scss'
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
-import CommonUtils from '../../../utils/CommonUtils'
+import CommonUtils from '../../utils/CommonUtils'
 //impoxrt { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
@@ -11,9 +11,9 @@ class ModalCreateAlbum extends React.Component {
 constructor(props) {
     super(props);
     this.state = {
-        nameAlbum : '',
+        playlistname : '',
         previewImgUrl : '',
-        imgalbum : '',
+        imgplaylist : '',
         isOpen: false,
     }
     this.listenToEmitter();
@@ -22,8 +22,8 @@ listenToEmitter () {
 
     emitter.on ('EVENT_CLEAR_MODAL_DATA', () => {
         this.setState({
-            nameAlbum : '', 
-            imgalbum : '',
+            playlistname : '', 
+            imgplaylist : '',
             previewImgUrl : '',
         })
     })
@@ -50,7 +50,7 @@ listenToEmitter () {
 
     checkvalidateInput = () => {
         let isValid = true;
-        let arrInput = ['nameAlbum','imgalbum'];
+        let arrInput = ['playlistname','imgplaylist'];
         for( let i = 0; i < arrInput.length; i++ ){
           
             if(!this.state[arrInput[i]]){
@@ -79,7 +79,7 @@ listenToEmitter () {
             this.setState({
                 
                 previewImgUrl : objectURL,
-                imgalbum : base64,
+                imgplaylist : base64,
 
                 
             })
@@ -107,23 +107,23 @@ listenToEmitter () {
                      
                        
                 
-                        <div className="container-input-1 col-12">
+                        <div className="container-input-1 col-8">
 
-                            <div className=" form-nameAlbum mt-4 col-12">
-                            <label htmlFor="inputnameAlbum4">nameAlbum</label>
-                            <input type="nameAlbum"
+                            <div className=" form-playlistname mt-4 col-8">
+                            <label htmlFor="inputnameAlbum4">playlistname</label>
+                            <input type="playlistname"
                                 className="form-control" 
-                                name="nameAlbum"
-                                value={this.state.nameAlbum}
-                                placeholder="nameAlbum" 
-                                onChange={(event)=>{this.handleOnchangeInput(event, 'nameAlbum')}} />
+                                name="playlistname"
+                                value={this.state.playlistname}
+                                placeholder="playlistname" 
+                                onChange={(event)=>{this.handleOnchangeInput(event, 'playlistname')}} />
                             </div>
     
                         </div>
 
 
-                        <div className="container-input-2 col-12">
-                            <div className=" form-imgalbum">
+                        <div className="container-input-2 col-8">
+                            <div className=" form-imgplaylist">
                                 <label className="upload" htmlFor="inputimgalbum">uploadfile<i className="fas fa-upload"></i> </label>
                                 <input hidden id="inputimgalbum" type="file"
                                     onChange={(event)=>{this.handleOnchangeImage(event)}}/>

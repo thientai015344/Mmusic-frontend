@@ -58,7 +58,6 @@ import { withRouter } from 'react-router'
  
 
     render() {
-          
         return (
    
             <> 
@@ -67,9 +66,12 @@ import { withRouter } from 'react-router'
                         
                     <div className="music-picture">
                             <div  className="music-picture--link">
-                                <img className="music-picture--img" src={this.props.img} alt=""/>
+                                <img className="music-picture--img" src={ this.props.img == null  ? "https://image.shutterstock.com/image-vector/playlist-handdrawn-concept-on-beige-260nw-1657857751.jpg" : this.props.img} alt=""/>
                             </div> 
                             <NavLink to ={`/playlist/${this.props.id}`}  className="music-overlay">
+                                <button className="setting-icon">
+                                        <i className="fas fa-wrench"/>
+                                </button>   
                                 <button className="icon" onClick={() => this.changeiconButton()} >
                                     {this.displaycheck()}
                                 </button>
@@ -80,8 +82,9 @@ import { withRouter } from 'react-router'
                         <NavLink to ={`/playlist/${this.props.id }`} className="music_name">
                           {this.props.name}
                         </NavLink>
-                        
-                </div>
+
+                                         
+                    </div>
                    
 
                 </div>

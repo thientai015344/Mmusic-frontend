@@ -140,21 +140,21 @@ class MyProFile extends Component {
             <div className ="myprofile">
                <div className="profile-default">
                    <div className="profile-setting">
-                    <i class="fas fa-user-cog"></i>
+                    <i className="fas fa-user-cog"></i>
                     <div className="sub-setting">
                         <button className="btn-setting--edit" onClick = {() =>{this.handleEdit(user)}} > Chỉnh Sửa</button>
                         <button className="btn-setting--lockout" onClick={processLogout} > Đăng Xuất</button>
                     </div>
                    </div>
 
-
+                                                                                    
 
                    <div className="profile-avata">
-                            <img className="profile-picture--img" src={imageBase64 == '' ? "https://bootdey.com/img/Content/avatar/avatar1.png" : imageBase64} alt="" />
+                            <img className="profile-picture--img" src={ imageBase64 == '' ? "https://bootdey.com/img/Content/avatar/avatar1.png" : imageBase64 == null ? "https://bootdey.com/img/Content/avatar/avatar1.png" : imageBase64} alt="" />
                    </div>
 
                    <div className="profile-name">
-                   {user.interfaceName== null ? user.username : user.interfaceName}
+                   {(user.interfaceName== null || user.interfaceName =='') ? user.username : user.interfaceName}
                         
                    </div>
 

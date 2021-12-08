@@ -10,7 +10,8 @@
     .createPlaylist{
         border-radius: 8px;
         width: 222px;
-        height:277px ;
+        height:257px ;
+        margin-right: 10px;
         text-align: center;
         background-color : rgb(79, 153, 97);
         &:hover {
@@ -19,7 +20,7 @@
         }
         
         .createPlaylist-content{
-            margin: 95px 0;
+            margin: 85px 0;
             i.fas.fa-plus {
                 font-size: 4rem ;
                 

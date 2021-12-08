@@ -57,34 +57,48 @@ class Register extends Component {
     handleAddRegister = async() =>{
         let isValid = this.checkvalidateInput();
         if(isValid === true){
- 
-            await createNewUserAdm({
-                username : this.state.username,
-                password : this.state.password ,
-               email : this.state.email,
-                phonenumber : this.state.phonenumber,
-                roleId : '1',
- 
-             })
- 
-            
-            
-         this.setState({
- 
-            username : '',
-            password : '',
-             email : '',
-            passwordpasswordreplay: '',
-            phonenumber : '',
-            isShowPassword :false,
-         })
-       
-         toast.success('tạo tài khoản thành công ... đăng nhập thôi nào'  );
- 
+
+            try {
+                let response = await createNewUserAdm({
+
+                        username : this.state.username,
+                        password : this.state.password ,
+                        email : this.state.email,
+                        phonenumber : this.state.phonenumber,
+                        roleId : '1',
+                });
+                if(response && response.errCode !== 0){
+                 toast.error(' tai khoa da ton taij ')           
+                }else {
+
+                    await createNewUserAdm({
+                        username : this.state.username,
+                        password : this.state.password ,
+                       email : this.state.email,
+                        phonenumber : this.state.phonenumber,
+                        roleId : '1',
+         
+                     })
+
+                                            
+                        this.setState({
+                
+                            username : '',
+                            password : '',
+                            email : '',
+                            passwordpasswordreplay: '',
+                            phonenumber : '',
+                            isShowPassword :false,
+                        })
+                    
+                        toast.success('tạo tài khoản thành công ... đăng nhập thôi nào'  );     
+                }
              
+                } catch (error) {
+                     console.log(error);
+             }      
         }
- 
-     }
+    }
 
      showHiderPassword = () =>{
         this.setState({ 
@@ -160,7 +174,7 @@ class Register extends Component {
                                         {this.state.errMessage}
                                     </div>
                                     
-                                    <button className="button-login" onClick={() =>{this.handleAddRegister()}} >Đăng Nhập</button>
+                                    <button className="button-login" onClick={() =>{this.handleAddRegister()}} >Đăng Ký</button>
                                    
                                 </div>
                             </div>

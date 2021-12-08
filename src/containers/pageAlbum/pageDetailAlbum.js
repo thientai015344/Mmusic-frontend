@@ -106,11 +106,8 @@ class PageDetailAlbum extends Component {
         
             imageBase64trac = new Buffer(track.albumtracks.track.imgsong, 'base64').toString('binary');
         }
-      return {id : track.albumtracks.track.id ,name : track.albumtracks.track.namesong ,idsinger : track.albumtracks.track.singerId, cover : imageBase64trac, musicSrc : track.albumtracks.track.filetrack, duration : track.albumtracks.track.duration, singer : track.albumtracks.track.singer.singername,  
-    
-        
-    }
-})
+      return {id : track.albumtracks.track.id ,name : track.albumtracks.track.namesong ,idsinger : track.albumtracks.track.singerId, cover : imageBase64trac, musicSrc : track.albumtracks.track.filetrack, duration : track.albumtracks.track.duration, singer : track.albumtracks.track.singer.singername }
+    })
 
 
 
