@@ -71,7 +71,7 @@ class Profilesinger extends Component {
             
                 imageBase64trac = new Buffer(track.tracks.imgsong, 'base64').toString('binary');
             }
-        return { id : track.tracks.id, idsinger:track.tracks.singerId, nametrack : track.tracks.namesong, imgtrack : imageBase64trac, duration : track.tracks.duration, singerName : track.singername}
+        return { id : track.tracks.id, idsinger:track.tracks.singerId,musicSrc: track.tracks.filetrack , name : track.tracks.namesong, cover : imageBase64trac, duration : track.tracks.duration, singer : track.singername}
 
         })
         
@@ -109,12 +109,12 @@ class Profilesinger extends Component {
                                     <MediaItem 
                                     //gettrackkk = {() => this.getTrackforPlayer()}
                                     key={index}
-                                    namesong={item.nametrack} 
-                                    imgsong = {item.imgtrack}
+                                    namesong={item.name} 
+                                    imgsong = {item.cover}
                                     duration={item.duration}
                                     idsinger={item.idsinger}
                                     id ={item.id}
-                                    singername={item.singerName} 
+                                    singername={item.singer} 
                                     getarray ={audioLists}
                                         />
                             

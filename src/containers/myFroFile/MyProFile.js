@@ -4,6 +4,7 @@ import MyOverview from "./MyOverview"
 import {getAllUSER, editUserAdm} from "../../services/USERService"
 import { connect } from 'react-redux';
 import ModalEditUser from './modalEditUser';
+import _ from 'lodash';
 import * as actions from "../../store/actions";
 import './MyProfile.scss'
 
@@ -27,28 +28,25 @@ class MyProFile extends Component {
 
     
         let {userinfor} = this.props;
-        let useridd ='';
-        if(userinfor.id){
-            useridd = userinfor.id
+        let user = userinfor;
+        if(user && !_.isEmpty(user)){
+            let id = user.id
+            this.setState({
+                userId : id
+            })
+            let response = await getAllUSER(id)
+            if(response && response.errCode === 0) {
+                this.setState ({ 
+                    ArrayUser : response.user
+                })
+     
+            }
+    
         }
-      
-        this.setState({
-            userId : useridd
-        })
        
         await this.getAllUSER();
 
        
-        let response = await getAllUSER(useridd)
-        if(response && response.errCode === 0) {
-            this.setState ({ 
-                ArrayUser : response.user
-             })
-             
-        }
-    
-        
-    
     
     }
 
@@ -112,7 +110,7 @@ class MyProFile extends Component {
 
     render() {
 
-
+        let userId = this.state.userId
         const { processLogout } = this.props;
 
 
@@ -189,7 +187,7 @@ class MyProFile extends Component {
 
                <div className="container-myprofile">
                 
-                <MyOverview />
+                <MyOverview userId={userId}  />
 
                    </div>
                

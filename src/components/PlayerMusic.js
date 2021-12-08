@@ -3,7 +3,6 @@ import ReactJkMusicPlayer from "react-jinke-music-player";
 import "react-jinke-music-player/assets/index.css";
 import { connect } from 'react-redux';
 import MediaItem from '../components/mediaItem';
-import equal from 'fast-deep-equal'
 import './PlayerMusic.scss'
 
 
@@ -18,17 +17,6 @@ import './PlayerMusic.scss'
       }
   }
 
-
-
-
-  // componentDidMount =() => {
-
-  //   let audioLists = this.props.listmusics
-  //   console.log('settet',audioLists)
-  //   this.setState({
-  //     ArrayTrack : audioLists
-  //   })
-  // }
 
   componentDidUpdate(prevProps){
 
@@ -47,7 +35,7 @@ import './PlayerMusic.scss'
 
 
       let audioLists = this.state.ArrayTrack; 
-      
+      console.log(audioLists);
       return (
         <>
 

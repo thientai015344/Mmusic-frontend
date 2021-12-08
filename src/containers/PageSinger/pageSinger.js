@@ -58,7 +58,27 @@ class PageSinger extends Component {
         let ArraySinger = this.state.ArraySinger;
 
         let singerkAray = this.state.getarray; 
+        const audioLists = singerkAray && singerkAray.map(track =>{
+            let imageBase6495 = '';
+            if(track.avatasinger){
+            
+                imageBase6495 = new Buffer(track.avatasinger, 'base64').toString('binary');
+            }
+          return { anh: imageBase6495}
+          })
+        
+
+        let anhdd = audioLists[0]
+          let text ='';
+        if( anhdd ){
+            
+            let anh1 = Object.values(anhdd)
+            
+            text = anh1.toString();
+        }
+
    
+        console.log(text);
         return (
             <div>
 
@@ -67,7 +87,7 @@ class PageSinger extends Component {
 
                    <div className="singer-top">
                        <div className="avata-singer-top">
-                            <img src="https://avatar-ex-swe.nixcdn.com/singer/avatar/2021/01/04/e/f/b/c/1609742824669_600.jpg" alt="" className="avata-singer--top"/>
+                        <img src={text} alt="" className="avata-singer--top"/>
                        </div>
                        <div className="singer-down">
                            <Title title="TOP Nghệ Sĩ Trending Trong Tháng" />
@@ -82,7 +102,7 @@ class PageSinger extends Component {
                                             return(
                                                 <div className="item-singer col-6">
                                                     <div className="index-item">
-                                                        {index}
+                                                        {index+1}
                                                     </div>
                                                     <div className="img-singer-item">
                                                         <img src={imageBase649} alt="" className="img-item-singer" />

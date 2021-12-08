@@ -83,6 +83,7 @@ class MediaItem extends Component {
 
     render() {
         let array = this.props.getarray
+        console.log(array)
         let id = this.props.id
        
         return (

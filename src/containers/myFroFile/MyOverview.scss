@@ -4,7 +4,34 @@
 
 .overview-playlist{
     display: flex;
+    flex-wrap: wrap;
     margin-bottom: 60px;
+
+    .createPlaylist{
+        border-radius: 8px;
+        width: 222px;
+        height:277px ;
+        text-align: center;
+        background-color : rgb(79, 153, 97);
+        &:hover {
+            opacity: 0.8;
+            cursor: pointer;
+        }
+        
+        .createPlaylist-content{
+            margin: 95px 0;
+            i.fas.fa-plus {
+                font-size: 4rem ;
+                
+                margin: 0 auto;
+            }
+    
+            .titel-createPlaylist{
+                margin-top: 10px;
+            }
+
+        }
+    }
 }
 
 .overview-Singer {

@@ -5,10 +5,12 @@
     .singer-top{
         display: flex;
         background-color: #f1f1f1;
+        border-radius: 4px;
         .avata-singer-top{
             padding: 30px 0 30px 30px;
             .avata-singer--top{ 
                 width: 360px;
+                border-radius: 5px;
                 box-shadow: 1px 8px 16px 16px #d1cfcf;
             }
         }
