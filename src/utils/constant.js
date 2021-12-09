@@ -6,10 +6,11 @@ export const path = {
     LOG_OUT: '/logout',
     ADMIN: '/admin',
     SONG: '/bai-hat',
-    BXH: '/BXH',
-    COLLECTION: '/collection',
+    // BXH: '/BXH',
+    // COLLECTION: '/collection',
     ALBUM: '/album',
     ALBUMDETAIL :'/album/:id',
+    PLAYLISTDETAIL :'/playlist/:id',
     SINGER: '/singer',
     SINGERDETAIL: '/singer/:id',
     MY_MUSIC: '/myfrofile'

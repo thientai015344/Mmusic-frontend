@@ -4,7 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faHeart, faLink, faComment, faPause, faPlay} from '@fortawesome/free-solid-svg-icons'
 import {connect} from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import _ from 'lodash';
 import * as actions from '../store/actions'
+import { toast } from 'react-toastify';
+import {emitter} from '../utils/emitter'
+import ModalcreatePlaylist from '../containers/myFroFile/modalcreatePlaylist'
+import {createNewTrackPlaylist, createNewPlaylist, createNewTracklibrytracks, getALLPlaylist } from '../services/playlistSevice';
 import ModalComment from './modacommettrack'
 
 class MediaItem extends Component {
@@ -12,12 +17,86 @@ class MediaItem extends Component {
         super(props)
         this.state ={
             isOpenModalcommet : false, 
+            userId : '',
             trackId : '',
             status:0,
+            isOpenModalAlbum : false, 
             arraycomment: [],
+            ArrayPlaylist: [],
+
         }
 
     }
+
+    async componentDidMount() {
+  
+
+    
+        let {userinfor} = this.props;
+        let user = userinfor;
+        if(user && !_.isEmpty(user)){
+            let id = user.id
+            this.setState({
+                userId : id
+            })
+            let response = await getALLPlaylist(id)
+            if(response && response.errCode === 0) {
+                let playlists = response.playlist.data.reverse();
+                this.setState ({ 
+                    ArrayPlaylist : playlists
+                })
+     
+            }
+    
+        }
+   
+        await this.getALLPlaylist();
+
+    
+    }
+
+
+    getALLPlaylist = async() =>{
+        let id = this.state.userId
+        let response = await getALLPlaylist(id)
+        if(response && response.errCode === 0) {
+            let playlists = response.playlist.data.reverse();
+            this.setState ({ 
+                ArrayPlaylist : playlists
+             })
+             
+        }
+    }
+
+
+
+
+    handleaddtracklib = async(id) =>{
+        await createNewTracklibrytracks({
+            trackId : id,
+            userId : this.state.userId,
+        })
+        toast.success('đã thêm vào thư viện'); 
+    }
+
+    setTRackId=(id) =>{
+        this.setState({
+            trackId : id,
+        })
+    }
+
+
+    handleAddTrackPlaylist= async(id) =>{
+        await createNewTrackPlaylist({
+            playlistId : id,
+            trackId : this.state.trackId,
+        })
+        toast.success('đã thêm vào Playlist'); 
+            
+    }
+
+
+
 
 
 
@@ -76,6 +155,50 @@ class MediaItem extends Component {
 
     }
 
+    toggleAlbumModal = () =>{
+
+        this.setState({isOpenModalAlbum : !this.state.isOpenModalAlbum, })
+ 
+     }
+
+    
+    createNewPlaylist = async (data) =>{
+        console.log('check data',)
+        try {
+           let response = await createNewPlaylist(
+               {
+                playlistname : data.playlistname,
+                imgplaylist :data.imgplaylist,
+                userId :this.state.userId
+                
+            });
+           if(response && response.errCode !== 0){
+               alert(response.errMessage);
+           }else {
+               await this.getALLPlaylist();
+               this.setState({
+                isOpenModalAlbum : false
+               })
+               emitter.emit('EVENT_CLEAR_MODAL_DATA')
+
+                toast.success('❤️ tạo playlist success ❤️')
+            }
+            
+        
+        } catch (error) {
+            console.log(error);
+        }
+      
+    }
+
+    handleAddNewAlbum = () =>{
+
+        this.setState({
+            isOpenModalAlbum :true,
+        })
+
+    }
+
 
 
 
@@ -85,6 +208,9 @@ class MediaItem extends Component {
         let array = this.props.getarray
         console.log(array)
         let id = this.props.id
+
+
+        let playlist = this.state.ArrayPlaylist
        
         return (
 
@@ -97,6 +223,17 @@ class MediaItem extends Component {
                     id = {id}
                 
                 />
+
+                
+                <ModalcreatePlaylist
+                    
+                    isOpen={this.state.isOpenModalAlbum}
+                    toggleFromParent = {this.toggleAlbumModal}
+                    createNewAlbum = {this.createNewPlaylist}
+               
+                    
+                
+                />    
 
 
                 <div key={this.props.id} className="Wrap width">
@@ -127,9 +264,32 @@ class MediaItem extends Component {
                             </div>
                             <div className="media-right">
                                 <div className="media-icon">
-                                    <button className="addplaylist" onClick={() => this.changeiconButton()} >
-                                        <FontAwesomeIcon icon ={faHeart  } />
-                                    </button>
+                                    <div className="media-addTrack">
+                                        <button className="addplaylist" onClick={() => this.setTRackId(this.props.id)} >
+                                            <FontAwesomeIcon icon ={faHeart  } />
+                                        </button>
+                                        <ul className="media-lits--option">
+                                            <button className="media-item--addTrackLib" onClick={() => this.handleaddtracklib(this.props.id)}> thêm vào thư viện</button>
+                                            <button className="media-item--addTrackforPlaylist" > thêm vào Playlist
+                                                <div className="media-getPlaylist">
+                                                    <button className="media-createPlaylist" onClick ={() => this.handleAddNewAlbum()} ><div className="media-iconCreatePlaylist"> <i className="fas fa-plus"></i></div> Tạo Playlist Mới</button>
+                                                    <ul className="media-listPlaylist">
+                                                    {playlist && playlist.map((item, index) => {
+
+                                                        return( 
+
+                                                            <li className="media-listPlaylist-item" onClick={() => this.handleAddTrackPlaylist(item.playlists.id)}  key={index}>
+                                                                <button className="create-track--playlist"  ><i className="fas fa-list">{item.playlists.playlistname}</i></button>
+                                                            </li>
+
+                                                            )   
+                                                        })
+                                                    }
+                                                    </ul>
+                                                </div>
+                                            </button>
+                                        </ul>
+                                    </div>
                                     <button className="copylink" onClick={() => this.changeiconButton()} >
                                     <FontAwesomeIcon icon ={faLink } />
                                     </button>
@@ -145,6 +305,14 @@ class MediaItem extends Component {
         );
     }
 }
+const mapStateToProps = state => {
+    return {
+
+        userinfor : state.user.userInfo,
+
+        isLoggedIn: state.user.isLoggedIn
+    };
+};
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -155,4 +323,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect( null, mapDispatchToProps)(MediaItem);
+export default connect( mapStateToProps, mapDispatchToProps)(MediaItem);

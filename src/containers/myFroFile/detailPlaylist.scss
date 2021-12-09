@@ -1,0 +1,45 @@
+.detailPlaylist {
+    max-width: 1140px;
+
+    margin: 100px auto 0 auto;
+    display : flex;
+    .imgplaylist {
+        margin-right: 30px;
+        
+        .img-Playlist {
+            border-radius: 5px;
+            width: 300px;
+            margin-bottom: 30px;
+        }
+
+        
+    }   
+    .title-Playlist {
+        font-size: 2.2rem ;
+        font-weight: 600 ;
+        text-align: center ;
+        width: 300px ;
+
+    }
+
+    .Playlist-song {
+        margin-top: 40px;
+        .Playlist-title-song {
+            display: flex;
+            justify-content: space-between;
+           
+            .Playlist-fist{
+                margin-left: 15px;
+            }
+            .Playlist-end{
+                margin-right: 18px;
+            }
+        }
+        .Playlist-title-song > span{
+            font-weight: 600;
+        }
+        width: 100%;
+       
+    }
+
+}

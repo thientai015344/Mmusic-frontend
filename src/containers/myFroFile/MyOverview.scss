@@ -2,6 +2,11 @@
     margin-bottom: 50px;
 }
 
+.list-item-media--profile {
+    overflow-y: auto;
+    max-height: calc(100vh - 406px);
+}
+
 .overview-playlist{
     display: flex;
     flex-wrap: wrap;

@@ -48,7 +48,6 @@ constructor(props) {
     componentDidMount() {
 
         let user = this.props.currenUser;
-        console.log('uêrdert', user)
          if(user && !_.isEmpty(user)){
              this.setState({
                  id: user.id,
@@ -66,6 +65,7 @@ constructor(props) {
         if(prevProps.currenUser !== this.props.currenUser){
     
             let user = this.props.currenUser;
+            
                 console.log('uêrdert', user)
                 if(user && !_.isEmpty(user)){
                     this.setState({
@@ -75,6 +75,7 @@ constructor(props) {
                         password :'harpassword',
                         email :user.email,
                         phonenumber :user.phonenumber,
+                       
                     })
                  }
 
@@ -143,7 +144,7 @@ constructor(props) {
      
         return (
             <Modal isOpen={this.props.isOpen} toggle={() =>{this.toggle()}} className={'modal-useradm-container'}>
-                <ModalHeader toggle={() =>{this.toggle()}}>Edit User Admin</ModalHeader>
+                <ModalHeader toggle={() =>{this.toggle()}}>Chỉnh sửa Profile</ModalHeader>
                     <ModalBody>
 
                         

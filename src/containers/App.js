@@ -21,6 +21,7 @@ import PageAlbum from './pageAlbum/PageAlbum';
 import PageDetailAlbum from './pageAlbum/pageDetailAlbum';
 import PageSinger from './PageSinger/pageSinger'
 import Profilesinger from '../components/profilesinger';
+import PageDetailPlaylist from './myFroFile/pageDetailPlaylist';
 
 class App extends Component {
 
@@ -59,12 +60,14 @@ class App extends Component {
                                          <Route path={path.SONG} component={(PageSong)} />
                                          <Route exact path={path.ALBUM} component={(PageAlbum)} />
                                          <Route  path={path.ALBUMDETAIL} component={(PageDetailAlbum)} />
+                                         <Route  path={path.PLAYLISTDETAIL} component={(PageDetailPlaylist)} />
+
 
                                          <Route exact path={path.SINGER} component={(PageSinger)} />  
                                          <Route  path={path.SINGERDETAIL} component={(Profilesinger)} />  
 
                                          
-                                         <Route path={path.MY_MUSIC} component={(MyProFile)} />
+                                         <Route path={path.MY_MUSIC} component={userIsAuthenticated(MyProFile)} />
                                          <Route path={path.REGISTER} component={(Register)} />
                                        
                                        
@@ -76,13 +79,7 @@ class App extends Component {
                             <PlayerMusic />
                         <Footer />
 
-                        {/* <ToastContainer
-                            className="toast-container" toastClassName="toast-item" bodyClassName="toast-item-body"
-                            autoClose={false} hideProgressBar={true} pauseOnHover={false}
-                            pauseOnFocusLoss={true} closeOnClick={false} draggable={false}
-                            closeButton={<CustomToastCloseButton />}
-                        /> */}
-
+                       
 
                             <ToastContainer
                             position="bottom-right"

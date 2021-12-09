@@ -101,7 +101,7 @@ color : rgba(97, 97, 97, 1)
     height: 100%;
     justify-content: right;
 }
-.media-icon button{
+.media-icon>button{
     background: none;
     position: relative;
     border-radius: 50%;
@@ -176,4 +176,142 @@ color : rgba(97, 97, 97, 1)
     justify-content: center;
    
 }
+
+
+.addplaylist{
+    position: relative;
+    border: none;
+    border-radius: 50%;
+    background-color: transparent;
+    height: 40px;
+    width: 40.6px;
+}
+
+
+
+.media-addTrack:hover .media-lits--option{
+    display: block;
+}
+
+.media-lits--option{
+    width: 154px;
+    position: absolute;
+    z-index: 5;
+    right: 136px;
+    padding: 20px 0;
+    border-radius: 5px;
+    box-shadow: 0px 2px 8px 1px #afadad;
+    background-color: #fff;
+    top: 48px;
+    text-align: center;
+    z-index: 10;
+     display: none;
+}
+
+.media-lits--option > button:hover{
+    color: #04AA6D;
+    background-color: #ccc;
+}
+.media-item--addTrackLib{
+    margin: 5px 0;
+    border: none;
+    padding: 5px;
+    background-color: transparent;
+    border-radius: 8px;
+}
+.media-item--addTrackforPlaylist{
+    margin: 5px 0;
+    border: none;
+    padding: 5px;
+    background-color: transparent;
+    border-radius: 8px;
+}
+
+.media-item--addTrackforPlaylist:hover .media-getPlaylist{
+    display: block;
+}
+
+
+.media-getPlaylist {
+    padding: 20px 10px;
+    position: absolute;
+    border-radius: 8px;
+    max-height: 183px;
+    top: 65px;
+    left: -176px;
+    background-color: #fff;
+    display: none;
+    box-shadow: 0px 2px 8px 1px #afadad;
+
+}
+
+
+.media-createPlaylist{
+    background-color: #fff;
+    display: flex;
+    border: none;
+    align-items: center;
+    border-radius: 6px;
+    padding: 5px 10px;
+    
+}
+
+.media-iconCreatePlaylist{
+    background-color: #04AA6D;
+    width: 22px;
+    border-radius: 5px;
+    margin-right: 5px;
+   
+    
+}
+
+.media-createPlaylist:hover{
+    background-color: #ccc;
+    
+    
+}
+
+.media-listPlaylist{
+    padding: 0;
+    margin-top: 4px;  
+    text-align: left;
+    overflow-y: auto;
+    max-height: calc(68vh - 369px);
+    
+}
+
+.media-listPlaylist::before{
+    content: "";
+    width: 120px;
+    left: 106px;
+    height: 72px;
+    background-color:transparent;
+    position: absolute;
+    top: -16px;
+    
+}
+
+.media-listPlaylist-item{
+    margin-right: 5px;
+    border-radius: 5px;
+    padding: 5px 0;
+}
+
+.media-listPlaylist-item:hover{
+    background-color: #ccc;
+}
+.media-listPlaylist-item:hover .create-track--playlist {
+    background-color: #ccc;
+}
+
+.create-track--playlist{
+    background-color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+
+
+
 

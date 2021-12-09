@@ -4,11 +4,12 @@ import Title from '../../components/Title';
 import Myplaylist from '../../components/playlistProfile'
 import { toast } from 'react-toastify';
 import {emitter} from '../../utils/emitter'
-import {getALLPlaylist, GetAlllibrytracks, createNewPlaylist} from '../../services/playlistSevice'
+import {getALLPlaylist, GetAlllibrytracks, createNewPlaylist, editPlaylist, deletePlaylist} from '../../services/playlistSevice'
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import { NavLink  } from "react-router-dom";
 import ModalcreatePlaylist from './modalcreatePlaylist'
+import ModalEditPlaylist from './modalEditPlaylist'
 import "./MyOverview.scss"
 
 
@@ -20,9 +21,12 @@ class MyOverview extends Component {
             userId: '',          
             ArrayPlaylist : [],
             ArrayTrack : [],
-            isOpenModalAlbum : false, 
+            isOpenModalPlaylist : false, 
             isOpenModalEditUserAdm : false, 
-            userEdit : {}
+            isOpenModalEditPlaylist : false, 
+            userEdit : {},
+            playlistEdit :{},
+
             
 
         }
@@ -103,11 +107,15 @@ class MyOverview extends Component {
         }
     }
 
-    toggleAlbumModal = () =>{
+    togglePlaylistModal = () =>{
 
-        this.setState({isOpenModalAlbum : !this.state.isOpenModalAlbum, })
+        this.setState({isOpenModalPlaylist : !this.state.isOpenModalPlaylist, })
  
      }
+
+     togglePlaylistEditModal = () =>{
+        this.setState ({isOpenModalEditPlaylist : !this.state.isOpenModalEditPlaylist})
+    }
 
     createNewPlaylist = async (data) =>{
         console.log('check data',)
@@ -124,7 +132,7 @@ class MyOverview extends Component {
            }else {
                await this.getALLPlaylist();
                this.setState({
-                isOpenModalAlbum : false
+                isOpenModalPlaylist : false
                })
                emitter.emit('EVENT_CLEAR_MODAL_DATA')
 
@@ -139,12 +147,73 @@ class MyOverview extends Component {
     }
 
 
-    handleAddNewAlbum = () =>{
+    handleAddNewPlaylist = () =>{
 
         this.setState({
-            isOpenModalAlbum :true,
+            isOpenModalPlaylist :true,
         })
 
+    }
+
+
+    handleEdit = (playlist) =>{
+
+
+        this.setState ({
+            isOpenModalEditPlaylist : true,
+            playlistEdit : playlist
+        })
+
+       
+
+    }
+
+
+
+    handleDelete = async (id) => {
+
+  
+        try {
+            let res = await deletePlaylist(id)
+            if(res && res.errCode === 0){
+                
+                await this.getALLPlaylist();
+                toast.success(`  delete playlist successfully ` )
+
+            }
+            else{
+                alert(res.errMessage)
+            }
+            
+        } catch (error) {
+            console.log(error);
+            
+        }
+
+
+    }
+
+
+    handleEditPlaylist = async(playlist) => {
+        try {
+            
+            let res = await editPlaylist(playlist);
+            if(res && res.errCode === 0){
+                this.setState({ 
+                    isOpenModalEditPlaylist: false,
+                })
+                await this.getALLPlaylist();
+                toast.success('edit playlist successfully')
+            }
+            else{
+                alert(res.errCode)
+            }
+        } catch (error) {
+            console.log(error);
+            
+        }
+
+        
     }
 
   
@@ -172,50 +241,64 @@ class MyOverview extends Component {
         let data = this.state.ArrayPlaylist
         return (
             <div className="myplayList-overview" >
-                   <Title title='Bài Hát' />
+                   <Title title='Thư Viện' />
                 <div className="overview-song">
 
+
+
+                        <div className="list-item-media--profile">
 
                 {audioLists && audioLists.map((item, index) => {
 
                     return (
 
+                            <MediaItem
+                            
+                                key={index}
+                                imgsong={item.cover}
+                                id ={item.id}
+                                idsinger ={item.idsinger}
+                                namesong={item.name}
+                                singername={item.singer}
+                                duration={item.duration}
+                                getarray ={audioLists}
+    
+                            />
 
 
+                    )                                                
+                })
+            }
+                        </div>
                         
 
-                        <MediaItem
-                        
-                            key={index}
-                            imgsong={item.cover}
-                            id ={item.id}
-                            idsinger ={item.idsinger}
-                            namesong={item.name}
-                            singername={item.singer}
-                            duration={item.duration}
-                            getarray ={audioLists}
-
-                        />
 
                                                     
-        )                                                
-    }   
-)
-}
 
                     <ModalcreatePlaylist
                     
-                    isOpen={this.state.isOpenModalAlbum}
-                    toggleFromParent = {this.toggleAlbumModal}
-                    createNewAlbum = {this.createNewPlaylist}
+                    isOpen={this.state.isOpenModalPlaylist}
+                    toggleFromParent = {this.togglePlaylistModal}
+                    createNewPlaylist = {this.createNewPlaylist}
+               
                     
                 
-                    />                  
+                    />
+                     {this.state.isOpenModalEditPlaylist &&
+                    <ModalEditPlaylist
+
+                        isOpen={this.state.isOpenModalEditPlaylist}
+                        toggleFromParent = {this.togglePlaylistEditModal}
+                        currenPlaylist = {this.state.playlistEdit}
+                        editPlaylist = {this.handleEditPlaylist}
+
+                    />
+                }                  
 
                 </div>
                     <Title title='PlayList' />
                         <div className="overview-playlist">
-                            <div className="createPlaylist"  onClick ={() => this.handleAddNewAlbum()}>
+                            <div className="createPlaylist"  onClick ={() => this.handleAddNewPlaylist()}>
                                 <div className="createPlaylist-content">
 
                                     <i className="fas fa-plus"></i>
@@ -241,6 +324,7 @@ class MyOverview extends Component {
                                         name={item.playlists.playlistname}
                                         img={imageBase64trac}
                                         id={item.playlists.id}
+                                        handleDelete = {this.handleDelete}
 
                                         
                                         />

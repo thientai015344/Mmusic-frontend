@@ -15,10 +15,18 @@ import { withRouter } from 'react-router'
     constructor(props) {
         super(props)
         this.state ={
-            status:0
+            status:0,
+            playlistId : '',
             
         }
 
+    }
+
+    componentDidMount =() =>{
+        let id = this.props.id
+        this.setState({
+            playlistId : id
+        })
     }
 
  
@@ -53,6 +61,16 @@ import { withRouter } from 'react-router'
        
     }
 
+    handleEdit =() =>{
+        alert('click me')
+    }
+
+
+    handleDelete = async () => {
+
+        this.props.handleDelete(this.state.playlistId)
+    }
+
    
   
  
@@ -68,14 +86,22 @@ import { withRouter } from 'react-router'
                             <div  className="music-picture--link">
                                 <img className="music-picture--img" src={ this.props.img == null  ? "https://image.shutterstock.com/image-vector/playlist-handdrawn-concept-on-beige-260nw-1657857751.jpg" : this.props.img} alt=""/>
                             </div> 
-                            <NavLink to ={`/playlist/${this.props.id}`}  className="music-overlay">
-                                <button className="setting-icon">
-                                        <i className="fas fa-wrench"/>
-                                </button>   
-                                <button className="icon" onClick={() => this.changeiconButton()} >
+                            <div   className="music-overlay">
+                                <div className="music-overlay-item--sub">
+
+                                    <button className="setting-icon" title="chỉnh sửa Playlist" >
+                                            <i className="fas fa-wrench"/>
+                                    </button>   
+                                    <div className="sub-setting">
+                                        <button className="btn-setting--edit" onClick = {() =>this.handleEdit()} > Chỉnh Sửa</button>
+                                        <button className="btn-setting--lockout" onClick = {() =>{this.handleDelete()}}  > Xóa Playlist</button>
+                                    </div>
+
+                                </div>
+                                <NavLink to ={`/playlist/${this.props.id}`} className="icon-playlist" onClick={() => this.changeiconButton()} >
                                     {this.displaycheck()}
-                                </button>
-                            </NavLink>
+                                </NavLink>
+                            </div>
                     </div> 
                     
                     <div className="contet-playlist">
