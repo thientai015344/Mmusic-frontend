@@ -32,6 +32,9 @@ class PageSong extends Component {
 
 
     async componentDidMount() {
+
+    
+       document.title = ' Mmusic || Bài Hát '
        
         await this.getALLTrack();
 

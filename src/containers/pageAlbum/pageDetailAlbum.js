@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import  {getDetailAlbum, getALLAlbum} from '../../services/albumSevice'
-
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+import { toast } from 'react-toastify';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLink} from '@fortawesome/free-solid-svg-icons'
 import './detailAlbum.scss'
 import MediaItem from '../../components/mediaItem';
 class PageDetailAlbum extends Component {
     constructor(props) {
         super(props); 
         this.state = {
+            value: '',
             ArrayDetail :[],
-            Album : {},
-            
+            Album : {},           
             imgAlbum :'',
             
             
@@ -23,8 +26,8 @@ class PageDetailAlbum extends Component {
    
 
     async componentDidMount() {
-       
-       
+
+        
 
         await this.getALLAlbum(); 
 
@@ -32,15 +35,12 @@ class PageDetailAlbum extends Component {
 
         let Album = this.state.Album;
       
-
+            document.title = 'Album || ' + Album.nameAlbum
             let imageBase64 = '';
             if(Album.imgAlbum){
                
                 imageBase64 = new Buffer(Album.imgAlbum, 'base64').toString('binary');
             }
-
-            
-           
 
             this.setState({
                 
@@ -70,7 +70,7 @@ class PageDetailAlbum extends Component {
         let response = await getDetailAlbum(idd)
         if(response && response.errCode === 0) {
             let details =response.detailAlbum.reverse();
-            console.log('details', details)
+      
             this.setState ({ 
                 ArrayDetail : details
                  
@@ -80,21 +80,19 @@ class PageDetailAlbum extends Component {
     }
 
 
+    handlCopy= async() => {
+        let url = window.location.href
+
+        await navigator.clipboard.writeText(url)
+
+        toast.info('Link đã được sao chép vào clipboard')
+    }
+
 
 
     render() {   
 
         let Album = this.state.Album
-
-        console.log('albummmname', Album.nameAlbum)
-
-       
-
-
-
-        
-
-
 
 
       let array = this.state.ArrayDetail; 
@@ -130,6 +128,13 @@ class PageDetailAlbum extends Component {
                                 <h1 className="title-Album" >
                                         {Album.nameAlbum}
                                 </h1>
+                                <div className="button-search">
+
+                                    <button className="share-clapboard" onClick={ () =>this.handlCopy()}>
+                                        <FontAwesomeIcon icon ={faLink } />
+                                    </button>
+
+                                </div>
                             </div>
 
 

@@ -23,7 +23,7 @@ class HomePage extends Component {
 
     
     async componentDidMount() {
-       
+       document.title = 'Mmusic '
         await this.getALLAlbum();
         await this.getALLTrack();
 

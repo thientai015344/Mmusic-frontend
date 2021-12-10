@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './detailPlaylist.scss'
 import MediaItem from '../../components/mediaItem'
 import {getALLPlaylistForDetail, getDetailPlaylist} from '../../services/playlistSevice'
+import _ from 'lodash';
 
 class PageDetailPlaylist extends Component {
     constructor(props) {
@@ -38,6 +39,7 @@ class PageDetailPlaylist extends Component {
                 imgplaylist : imageBase64
             })
         
+            document.title = ' PlayList  | ' + Playlist.playlistname
         
 
     }
@@ -61,7 +63,7 @@ class PageDetailPlaylist extends Component {
         let response = await getDetailPlaylist(idd)
         if(response && response.errCode === 0) {
             let details =response.playlist.reverse();
-            console.log('details', details)
+          
             this.setState ({ 
                 ArrayDetail : details
                  
@@ -76,16 +78,16 @@ class PageDetailPlaylist extends Component {
     render() {   
 
         let Playlist = this.state.Playlist
+        let name = Playlist.user
+            let nameee ='';
+        if(name && !_.isEmpty(name)){
+            nameee = name.interfaceName
 
-        console.log('albummmname', Playlist.playlistname)
-
-       
-
-
+            
+    
+        }
 
         
-
-
 
 
       let array = this.state.ArrayDetail; 
@@ -101,11 +103,6 @@ class PageDetailPlaylist extends Component {
     })
 
 
-
-
-
-
-    
         return (
 
             <>
@@ -121,6 +118,8 @@ class PageDetailPlaylist extends Component {
                                 <h1 className="title-Playlist" >
                                         {Playlist.playlistname}
                                 </h1>
+
+                                <p className="create-by">Tạo bởi : {'_', nameee}</p>
                             </div>
 
 

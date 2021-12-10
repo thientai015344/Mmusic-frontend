@@ -315,7 +315,7 @@ class MyOverview extends Component {
                                     
                                         imageBase64trac = new Buffer(item.playlists.imgplaylist, 'base64').toString('binary');
                                     }
-                                    console.log(item.playlists.imgplaylist)
+                                
 
                                 return( 
 

@@ -25,6 +25,8 @@ class PageSinger extends Component {
 
 
     async componentDidMount() {
+
+        document.title = ' Mmusic || Ca sĩ  '
        
         await this.getALLSinger();
 
@@ -78,7 +80,6 @@ class PageSinger extends Component {
         }
 
    
-        console.log(text);
         return (
             <div>
 

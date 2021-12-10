@@ -25,7 +25,7 @@ class MyProFile extends Component {
 
     async componentDidMount() {
   
-
+       document.title = 'Nhạc Cá Nhân'
     
         let {userinfor} = this.props;
         let user = userinfor;

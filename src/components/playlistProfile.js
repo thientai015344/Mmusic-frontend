@@ -27,6 +27,8 @@ import { withRouter } from 'react-router'
         this.setState({
             playlistId : id
         })
+
+        
     }
 
  

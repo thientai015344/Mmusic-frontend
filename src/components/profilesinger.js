@@ -21,7 +21,10 @@ class Profilesinger extends Component {
 
 
         await this.getDetailSinger();
-       
+
+        let singers = this.state.ArraySinger
+            
+        document.title = ' Mmusic || Ca sĩ  | ' + singers.singername
 
     }
 

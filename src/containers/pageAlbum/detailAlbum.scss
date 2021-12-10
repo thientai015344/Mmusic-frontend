@@ -21,8 +21,23 @@
         width: 300px ;
 
     }
+    .button-search{
+        width: 300px;
+        text-align: center ;
+        .share-clapboard{
+            background: rgb(235, 230, 230);
+            border-radius: 50%;
+            border: none ;
+            margin: 0 10px;
+            height: 40px;
+            width: 40.6px;
+            
+    
+        }
+    }
 
     .album-song {
+        width: 100%;
         margin-top: 40px;
         .album-title-song {
             display: flex;
@@ -38,7 +53,12 @@
         .album-title-song > span{
             font-weight: 600;
         }
-        width: 100%;
+
+        .album-song-item{
+            overflow-y: auto;
+            max-height: calc(100vh - 192px);
+        }
+        
        
     }
 

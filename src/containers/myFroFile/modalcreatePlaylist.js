@@ -64,7 +64,7 @@ listenToEmitter () {
     handleAddNewAlbum = () =>{
        let isValid = this.checkvalidateInput();
        if(isValid === true){
-            this.props.createNewAlbum(this.state);
+            this.props.createNewPlaylist(this.state);
        }
 
     }

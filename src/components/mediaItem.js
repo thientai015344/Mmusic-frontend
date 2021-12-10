@@ -199,6 +199,12 @@ class MediaItem extends Component {
 
     }
 
+    handlCopy= async() => {
+        
+        toast.info('Link đã được sao chép vào clipboard')
+    }
+
+
 
 
 
@@ -206,7 +212,6 @@ class MediaItem extends Component {
 
     render() {
         let array = this.props.getarray
-        console.log(array)
         let id = this.props.id
 
 
@@ -279,7 +284,7 @@ class MediaItem extends Component {
                                                         return( 
 
                                                             <li className="media-listPlaylist-item" onClick={() => this.handleAddTrackPlaylist(item.playlists.id)}  key={index}>
-                                                                <button className="create-track--playlist"  ><i className="fas fa-list">{item.playlists.playlistname}</i></button>
+                                                                <button className="create-track--playlist"  ><i className="fas fa-list">  {   item.playlists.playlistname}</i></button>
                                                             </li>
 
                                                             )   
@@ -290,7 +295,7 @@ class MediaItem extends Component {
                                             </button>
                                         </ul>
                                     </div>
-                                    <button className="copylink" onClick={() => this.changeiconButton()} >
+                                    <button className="copylink" onClick={ () =>this.handlCopy()} >
                                     <FontAwesomeIcon icon ={faLink } />
                                     </button>
                                     <button className="comment-icon" onClick={() => this.comment(id)} >

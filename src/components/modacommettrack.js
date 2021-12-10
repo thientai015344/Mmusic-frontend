@@ -139,9 +139,7 @@ getALLComment = async() =>{
     }
 
     keyPress = async(event) => {
-        console.log(event.charCode)
-        if (event.charCode == 13){
-          
+        if (event.charCode == 13){        
             let isValid = this.checkvalidateInput();
              if(isValid === true){
            await createNewCommentTrack({
@@ -175,8 +173,8 @@ getALLComment = async() =>{
             imageBase646 = new Buffer(user.avata, 'base64').toString('binary');
         }
         let comment =this.state.arraycomment
-       
-         const commentlist = comment && comment.map(comment =>{
+
+         const commentlist = comment.sort((a, b) => a.comments.id < b.comments.id ? 1:-1).map(comment =>{
           let imageBase64 = '';
           if(comment.comments.user.avata){
           
@@ -184,8 +182,13 @@ getALLComment = async() =>{
           }
 
 
-        return {username :comment.comments.user.username , name: comment.comments.user.interfaceName, cover:imageBase64, comment: comment.comments.contentcmt }
-        })  
+        return {username :comment.comments.user.username ,id : comment.comments.id , name: comment.comments.user.interfaceName, cover:imageBase64, comment: comment.comments.contentcmt }
+        }) 
+     
+      
+
+       
+
         return (
             <Modal isOpen={this.props.isOpen} toggle={() =>{this.toggle()}} className={'modal-useradm-container'}>
                 <ModalHeader toggle={() =>{this.toggle()}}>Bình Luận</ModalHeader>

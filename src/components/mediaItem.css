@@ -302,6 +302,8 @@ color : rgba(97, 97, 97, 1)
 }
 .media-listPlaylist-item:hover .create-track--playlist {
     background-color: #ccc;
+    color: #04AA6D;
+
 }
 
 .create-track--playlist{

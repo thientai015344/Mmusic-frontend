@@ -152,7 +152,7 @@ class Register extends Component {
 
                                         </div>
 
-                                        <input type="password" placeholder="mật khẩu"   
+                                        <input type="password" placeholder=" Nhập Lại mật khẩu"   
                                             value={this.state.passwordpasswordreplay }
                                             onChange={(event)=>{this.handleOnchangeInput(event, 'passwordpasswordreplay')}}
                                             className="input-login password"
