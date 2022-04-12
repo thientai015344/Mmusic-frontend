@@ -89,7 +89,7 @@ class Login extends Component {
                                          onChange={(event) => this.handleGetussername(event)}
                                         className="input-login name"/>
                                         <div className="custom-input">
-                                            <input type="password" placeholder="mật khẩu"
+                                            <input  placeholder="mật khẩu"
                                             type={this.state.isShowPassword ? 'text' : 'password' }
                                             value={this.state.password }
                                             onChange={(event) => this.handleGetpassword(event)}

@@ -110,15 +110,15 @@ constructor(props) {
         formData.append('upload_preset', 'fileaudio')
 
 
-        const data = await fetch('https://api.Cloudinary.com/v1_1/thientai/video/upload',{
+        const data = await fetch('https://api.cloudinary.com/v1_1/thientai/upload',{
             method: 'POST',
             body: formData
         }).then(res => res.json())
 
-        console.log('che3cxk file ',data)
+        console.log('che3cxk file ',data.url)
 
         this.setState({
-            filetrack : data.secure_url,
+            filetrack : data.url,
             duration : data.duration
         })
             
