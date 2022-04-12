@@ -4,7 +4,7 @@ import './modaltrack.scss'
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
 import CommonUtils from '../../../utils/CommonUtils'
-//impoxrt { FormattedMessage } from 'react-intl';
+import axios from "axios"
 import { connect } from 'react-redux';
 import Select from 'react-select';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
@@ -20,6 +20,9 @@ constructor(props) {
         filetrack: '',
         duration: '',
         SingerID: '',
+        transcriptID: '',
+        transcriptData: '',
+        uploadUrl: '',
         lyric: '', //
         listen: 0,
         previewImgUrl : '',
@@ -134,15 +137,77 @@ getALLsINGERForTrack = async() =>{
         formData.append('upload_preset', 'fileaudio')
 
 
-        const data = await fetch('https://api.Cloudinary.com/v1_1/thientai/video/upload',{
+        const data = await fetch('https://api.cloudinary.com/v1_1/thientai/upload',{
             method: 'POST',
             body: formData
         }).then(res => res.json())
 
         this.setState({
-            filetrack : data.secure_url,
+            filetrack : data.url,
             duration : data.duration
         })
+
+        
+
+        const YourAPIKey = '2fe40dcc467d47f38f5af8d4c74dead9'
+        const assembly = await axios.create({
+            baseURL: "https://api.assemblyai.com/v2",
+            headers: {
+              authorization: YourAPIKey,
+              "content-type": "application/json",
+              "transfer-encoding": "chunked",
+            },
+          })  
+          
+          let  audioFile = await 'https://bit.ly/3yxKEIY'
+
+          if  (audioFile) {
+            await assembly 
+              .post("/upload", audioFile)
+              .then(ress =>  {
+                const persons = ress;
+               
+                this.setState({ uploadUrl: persons.data.upload_url });
+              }) 
+          }
+          let uploadUrll = await this.state.uploadUrl
+        if(uploadUrll){
+
+            await assembly
+            .post("/transcript", {
+              audio_url: uploadUrll,
+            })
+            .then((resss) => {
+              const personss = resss;
+                 
+                  this.setState({ transcriptID: personss.data.id });
+            })
+            .catch((err) => console.error(err))
+        }
+        let transcriptIDd = await this.state.transcriptID
+        if(transcriptIDd){
+               try {
+                 await assembly.get(`/transcript/${transcriptIDd}`)
+                 .then((ressss) => {
+                   const personsss = ressss;
+                      console.log( personsss)
+                       this.setState({ transcriptData: personsss.data });
+                       this.setState({ lyric: personsss.text });
+    
+                 })
+            
+               } catch (err) {
+                 console.error(err)
+               }
+
+        }
+        
+          
+        
+  
+        
+      
+      //  console.log(uploadURL)
 
         
 

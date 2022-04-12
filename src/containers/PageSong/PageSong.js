@@ -63,6 +63,7 @@ class PageSong extends Component {
         let ArrayTrack = this.state.ArrayTrack;
 
         let trackAray = this.state.ArrayTrack; 
+        console.log('track', trackAray);
        
         const audioLists = trackAray && trackAray.map(track =>{
           let imageBase64 = '';
@@ -70,7 +71,7 @@ class PageSong extends Component {
           
               imageBase64 = new Buffer(track.imgsong, 'base64').toString('binary');
           }
-        return { name: track.namesong, cover: imageBase64, musicSrc : track.filetrack, singer : track.singer.singername}
+        return { name: track.namesong, cover: imageBase64, lyric: track.lyric, musicSrc : track.filetrack, singer : track.singer.singername}
         })
 
      

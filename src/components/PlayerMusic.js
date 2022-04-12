@@ -3,6 +3,7 @@ import ReactJkMusicPlayer from "react-jinke-music-player";
 import "react-jinke-music-player/assets/index.css";
 import { connect } from 'react-redux';
 import MediaItem from '../components/mediaItem';
+import {Player} from "webvtt-player"
 import './PlayerMusic.scss'
 
 
@@ -35,7 +36,7 @@ import './PlayerMusic.scss'
 
 
       let audioLists = this.state.ArrayTrack; 
-      console.log(audioLists);
+      console.log('lyric',audioLists);
       return (
         <>
 
@@ -43,13 +44,21 @@ import './PlayerMusic.scss'
        
         />
 
+        
+
 
         <ReactJkMusicPlayer
         audioLists={audioLists}
-     
+        showLyric={true}
         autoPlay={true}
         drag={true}
+        
       />
+      {/* <Player
+  audio='http://res.cloudinary.com/thientai/video/upload/v1649656840/fileaudio/otdoyl0wtua5upvx919h.mp3'
+  transcript="https://example.org/transcript.vtt" /> */}
+
+
           
         </>
       );

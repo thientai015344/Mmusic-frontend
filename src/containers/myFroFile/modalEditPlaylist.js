@@ -105,7 +105,7 @@ constructor(props) {
 
     handleSaveChangePlaylist = () =>{
        let isValid = this.checkvalidateInput();
-       if(isValid === true){
+       if(isValid == true){
             this.props.editPlaylist(this.state);
        }
 
